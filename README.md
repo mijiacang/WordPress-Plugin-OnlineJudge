@@ -1,6 +1,6 @@
-# WordPress Plugin Boilerplate
+# WordPress Plugin OnlineJudge
 
-A standardized, organized, object-oriented foundation for building high-quality WordPress Plugins.
+A WordPress pluing to create Online Judges social platform. Integrates with BuddyPress and bbPress.
 
 ## Contents
 
