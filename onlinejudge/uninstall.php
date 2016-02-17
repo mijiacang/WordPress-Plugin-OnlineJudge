@@ -19,8 +19,8 @@
  * For more information, see the following discussion:
  * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/pull/123#issuecomment-28541913
  *
- * @link       http://example.com
- * @since      1.0.0
+ * @link       https://github.com/UVaOJ/WordPress-Plugin-OnlineJudge
+ * @since      0.0.1
  *
  * @package    OnlineJudge
  */
