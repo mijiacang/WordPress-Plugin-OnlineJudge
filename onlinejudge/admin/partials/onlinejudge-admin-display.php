@@ -5,8 +5,8 @@
  *
  * This file is used to markup the admin-facing aspects of the plugin.
  *
- * @link       http://example.com
- * @since      1.0.0
+ * @link       https://github.com/UVaOJ/WordPress-Plugin-OnlineJudge
+ * @since      0.0.1
  *
  * @package    OnlineJudge
  * @subpackage OnlineJudge/admin/partials
