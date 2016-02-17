@@ -52,8 +52,6 @@ class OnlineJudge_Admin {
 		$this->onlinejudge = $onlinejudge;
 		$this->version = $version;
 
-		add_action( 'admin_menu', 'create_admin_menu' ) ;
-
 	}
 
 	/**
