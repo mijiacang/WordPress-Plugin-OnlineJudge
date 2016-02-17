@@ -52,6 +52,8 @@ class OnlineJudge_Admin {
 		$this->onlinejudge = $onlinejudge;
 		$this->version = $version;
 
+		add_action( 'admin_menu', 'create_admin_menu' ) ;
+
 	}
 
 	/**
@@ -98,6 +100,43 @@ class OnlineJudge_Admin {
 
 		wp_enqueue_script( $this->onlinejudge, plugin_dir_url( __FILE__ ) . 'js/onlinejudge-admin.js', array( 'jquery' ), $this->version, false );
 
+	}
+
+	private function create_admin_menu() {
+		add_options_page( 'OnlineJudge Plugin Settings' , 'OnlineJudge' , 'manage_options' , 'onlinejudge' , 'onlinejudge_options' ) ;
+		add_action('admin_init','onlinejudge_register_settings') ;
+	}
+
+	private function onlinejudge_options() {
+		if(!current_user_can('manage_options')) {
+			wp_die('You do not have sufficient permissions to access this page.');
+		}
+		?>  
+		<div class="wrap">
+		<h2>OnlineJudge Plugin Settings</h2>
+		<form method="post" action="options.php">
+		<?php settings_fields('onlinejudge') ; ?>
+		<?php do_settings_sections('onlinejudge_settings') ; ?>
+		</form>
+		</div>
+		<?php
+	}
+
+	private function uvaoj_register_settings() {
+		register_setting('onlinejudge','onlinejudge') ;
+
+		add_settings_section('onlinejudge_integration','Plugins to integrate OnlineJudge with','onlinejudge_integration_text','onlinejudge_settings') ;
+		add_settings_field('bpgroupsIntegration','BuddyPress Groups','onlinejudge_bpgroupsIntegration','onlinejudge_settings','onlinejudge_integration') ;
+		add_settings_field('bpglobalsearchIntegration','BuddyPress Global Search','onlinejudge_bpglobalsearchIntegration','onlinejudge_settings','onlinejudge_integration') ;
+		add_settings_field('submit','','onlinejudge_submit','onlinejudge_settings','onlinejudge_integration') ;
+	}
+
+	private function onlinejudge_integration_text() {
+		    ?><p>Select the plugins to integrate OnlineJudge with</p><?php
+	}
+
+	private function onlinejudge_submit() {
+		    submit_button() ;
 	}
 
 }
