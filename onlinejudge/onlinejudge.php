@@ -13,7 +13,7 @@
  * @package           OnlineJudge
  *
  * @wordpress-plugin
- * Plugin Name:       OnlineJudge WordPress Plugin
+ * Plugin Name:       OnlineJudge
  * Plugin URI:        https://github.com/UVaOJ/WordPress-Plugin-OnlineJudge
  * Description:       Creation of Online Judge social platforms for WordPress, BuddyPress and bbPress.
  * Version:           0.0.1
