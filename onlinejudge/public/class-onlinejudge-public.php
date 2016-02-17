@@ -3,8 +3,8 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * @link       http://example.com
- * @since      1.0.0
+ * @link       https://github.com/UVaOJ/WordPress-Plugin-OnlineJudge
+ * @since      0.0.1
  *
  * @package    OnlineJudge
  * @subpackage OnlineJudge/public
@@ -18,14 +18,14 @@
  *
  * @package    OnlineJudge
  * @subpackage OnlineJudge/public
- * @author     Your Name <email@example.com>
+ * @author     UVa Online Judge
  */
 class OnlineJudge_Public {
 
 	/**
 	 * The ID of this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 * @access   private
 	 * @var      string    $onlinejudge    The ID of this plugin.
 	 */
@@ -34,7 +34,7 @@ class OnlineJudge_Public {
 	/**
 	 * The version of this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 * @access   private
 	 * @var      string    $version    The current version of this plugin.
 	 */
@@ -43,7 +43,7 @@ class OnlineJudge_Public {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 * @param      string    $onlinejudge       The name of the plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
@@ -57,7 +57,7 @@ class OnlineJudge_Public {
 	/**
 	 * Register the stylesheets for the public-facing side of the site.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 */
 	public function enqueue_styles() {
 
@@ -80,7 +80,7 @@ class OnlineJudge_Public {
 	/**
 	 * Register the JavaScript for the public-facing side of the site.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 */
 	public function enqueue_scripts() {
 
