@@ -9,7 +9,7 @@ The WordPress Plugin Boilerplate includes the following files:
 * `.gitignore`. Used to exclude certain files from the repository.
 * `CHANGELOG.md`. The list of changes to the core project.
 * `README.md`. The file that you’re currently reading.
-* A `plugin-name` directory that contains the source code - a fully executable WordPress plugin.
+* A `onlinejudge` directory that contains the source code - a fully executable WordPress plugin.
 
 ## Features
 
@@ -64,9 +64,9 @@ For reference, [here's a discussion](http://make.wordpress.org/themes/2013/03/04
 
 Note that if you include your own classes, or third-party libraries, there are three locations in which said files may go:
 
-* `plugin-name/includes` is where functionality shared between the admin area and the public-facing parts of the site reside
-* `plugin-name/admin` is for all admin-specific functionality
-* `plugin-name/public` is for all public-facing functionality
+* `onlinejudge/includes` is where functionality shared between the admin area and the public-facing parts of the site reside
+* `onlinejudge/admin` is for all admin-specific functionality
+* `onlinejudge/public` is for all public-facing functionality
 
 Note that previous versions of the Boilerplate did not include `OnlineJudge_Loader` but this class is used to register all filters and actions with WordPress.
 
