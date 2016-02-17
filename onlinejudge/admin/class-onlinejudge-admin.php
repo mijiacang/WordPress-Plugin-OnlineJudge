@@ -18,7 +18,7 @@
  *
  * @package    OnlineJudge
  * @subpackage OnlineJudge/admin
- * @author     Your Name <email@example.com>
+ * @author     UVa Online Judge
  */
 class OnlineJudge_Admin {
 
@@ -102,12 +102,12 @@ class OnlineJudge_Admin {
 
 	}
 
-	private function create_admin_menu() {
+	public function create_admin_menu() {
 		add_options_page( 'OnlineJudge Plugin Settings' , 'OnlineJudge' , 'manage_options' , 'onlinejudge' , 'onlinejudge_options' ) ;
 		add_action('admin_init','onlinejudge_register_settings') ;
 	}
 
-	private function onlinejudge_options() {
+	public function onlinejudge_options() {
 		if(!current_user_can('manage_options')) {
 			wp_die('You do not have sufficient permissions to access this page.');
 		}
@@ -122,7 +122,7 @@ class OnlineJudge_Admin {
 		<?php
 	}
 
-	private function uvaoj_register_settings() {
+	public function uvaoj_register_settings() {
 		register_setting('onlinejudge','onlinejudge') ;
 
 		add_settings_section('onlinejudge_integration','Plugins to integrate OnlineJudge with','onlinejudge_integration_text','onlinejudge_settings') ;
@@ -131,11 +131,11 @@ class OnlineJudge_Admin {
 		add_settings_field('submit','','onlinejudge_submit','onlinejudge_settings','onlinejudge_integration') ;
 	}
 
-	private function onlinejudge_integration_text() {
+	public function onlinejudge_integration_text() {
 		    ?><p>Select the plugins to integrate OnlineJudge with</p><?php
 	}
 
-	private function onlinejudge_submit() {
+	public function onlinejudge_submit() {
 		    submit_button() ;
 	}
 
