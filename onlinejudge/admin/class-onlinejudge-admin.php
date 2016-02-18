@@ -105,7 +105,7 @@ class OnlineJudge_Admin {
 		add_action('admin_init',$this->onlinejudge_register_settings) ;
 	}
 
-	private function onlinejudge_options() {
+	public function onlinejudge_options() {
 		if(!current_user_can('manage_options')) {
 			wp_die('You do not have sufficient permissions to access this page.');
 		}
