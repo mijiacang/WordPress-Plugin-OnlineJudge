@@ -120,7 +120,7 @@ class OnlineJudge_Admin {
 		<?php
 	}
 
-	public function uvaoj_register_settings() {
+	public function onlinejudge_register_settings() {
 		register_setting('onlinejudge','onlinejudge') ;
 
 		add_settings_section('onlinejudge_integration','Plugins to integrate OnlineJudge with','onlinejudge_integration_text','onlinejudge_settings') ;
