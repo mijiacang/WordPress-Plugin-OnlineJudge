@@ -103,17 +103,31 @@ class OnlineJudge_Admin {
 	}
 
 	public function create_admin_menu() {
-		add_menu_page( 'OnlineJudge Plugin Settings' , 'OnlineJudge' , 'manage_options' , 'onlinejudge' , array($this,'onlinejudge_options') ,'' ,4 ) ;
+		add_menu_page( 'OnlineJudge Dashboard' , 'OnlineJudge' , 'manage_options' , 'onlinejudge' , array($this,'onlinejudge_dashboard') ,'' ,4 ) ;
+		add_submenu_page( 'onlinejudge', 'OnlineJudge Languages', 'Languages', 'manage_options', 'onlinejudge_languages', array($this,'onlinejudge_languages')) ;
 		add_action('admin_init', array($this,'onlinejudge_register_settings')) ;
 	}
 
+	public function onlinejudge_dashboard() {
+		?>
+		<div class="wrap">
+		<h2>OnlineJudge Dashboard</h2>
+		</div>
+		<?php
+	}
+
+	public function onlinejudge_languages() {
+		?>
+		<div class="wrap">
+		<h2>OnlineJudge Languages</h2>
+		</div>
+		<?php
+	}
+
 	public function onlinejudge_options() {
-		if(!current_user_can('manage_options')) {
-			wp_die('You do not have sufficient permissions to access this page.');
-		}
 		?>  
 		<div class="wrap">
-		<h2>OnlineJudge Plugin Settings</h2>
+		<h2>OnlineJudge Dashboard</h2>
 		<form method="post" action="options.php">
 		<?php settings_fields('onlinejudge') ; ?>
 		<?php do_settings_sections('onlinejudge_settings') ; ?>
