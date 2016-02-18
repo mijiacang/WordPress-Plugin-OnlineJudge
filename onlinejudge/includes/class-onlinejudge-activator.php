@@ -34,7 +34,7 @@ class OnlineJudge_Activator {
 		global $wpdb;
 		$charset_collate = $wpdb->get_charset_collate();
 
-		$db_version = 30 ;  				// INCREASE EVERYTIME A DB CHANGE STRUCTURE HAPPENS
+		$db_version = 33 ;  				// INCREASE EVERYTIME A DB CHANGE STRUCTURE HAPPENS
 
 		$installed_version = get_option('onlinejudge_db_version') ;
 
@@ -47,6 +47,7 @@ class OnlineJudge_Activator {
 			self::probcatTable($wpdb,$charset_collate) ;
 			self::codedraftsTable($wpdb,$charset_collate) ;
 			self::submissionsTable($wpdb,$charset_collate) ;
+			self::judgehistoryTable($wpdb,$charset_collate) ;
 
 			update_option('onlinejudge_db_version',$db_version) ;
 		}
@@ -173,21 +174,36 @@ class OnlineJudge_Activator {
 		$users = $wpdb->prefix . 'users' ;
 		$problems = $wpdb->prefix . 'oj_problems' ;
 		$languages = $wpdb->prefix . 'oj_languages' ;
-		$verdicts = $wpdb->prefix . 'oj_verdicts' ;
 
 		$sql = 	"CREATE TABLE $table_name (
 				id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 				user BIGINT(20) UNSIGNED NOT NULL,
 				problem MEDIUMINT UNSIGNED NOT NULL,
 				language SMALLINT UNSIGNED NOT NULL,
-				verdict SMALLINT UNSIGNED,
-				timeusage SMALLINT UNSIGNED,
-				memoryusage MEDIUMINT UNSIGNED,
 				created DATETIME NOT NULL,
 				PRIMARY KEY (id),
 				FOREIGN KEY (user) REFERENCES $users(id) ON DELETE NO ACTION ON UPDATE NO ACTION,
 				FOREIGN KEY (problem) REFERENCES $problems(id) ON DELETE NO ACTION ON UPDATE NO ACTION,
-				FOREIGN KEY (language) REFERENCES $languages(id) ON DELETE NO ACTION ON UPDATE NO ACTION,
+				FOREIGN KEY (language) REFERENCES $languages(id) ON DELETE NO ACTION ON UPDATE NO ACTION
+				) $charset_collate;";
+
+		dbDelta( $sql ) ;
+	}
+
+	private function judgehistoryTable($wpdb,$charset_collate) {
+		$table_name = $wpdb->prefix . 'oj_judgehistory' ;
+		$submissions = $wpdb->prefix . 'oj_submissions' ;
+		$verdicts = $wpdb->prefix . 'oj_verdicts' ;
+
+		$sql = 	"CREATE TABLE $table_name (
+				submission INT UNSIGNED NOT NULL,
+				verdict SMALLINT UNSIGNED NOT NULL,
+				timeusage SMALLINT UNSIGNED NOT NULL,
+				memoryusage MEDIUMINT UNSIGNED NOT NULL,
+				created DATETIME NOT NULL,
+				reason TINYTEXT NOT NULL,
+				PRIMARY KEY (submission,created),
+				FOREIGN KEY (submission) REFERENCES $submissions(id) ON DELETE NO ACTION ON UPDATE NO ACTION,
 				FOREIGN KEY (verdict) REFERENCES $verdicts(id) ON DELETE NO ACTION ON UPDATE NO ACTION
 				) $charset_collate;";
 
