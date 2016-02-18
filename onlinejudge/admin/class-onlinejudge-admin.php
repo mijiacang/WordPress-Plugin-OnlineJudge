@@ -103,7 +103,7 @@ class OnlineJudge_Admin {
 	}
 
 	public function create_admin_menu() {
-		add_menu_page( 'OnlineJudge Plugin Settings' , 'OnlineJudge' , 'manage_options' , 'onlinejudge' , array($this,'onlinejudge_options') ) ;
+		add_menu_page( 'OnlineJudge Plugin Settings' , 'OnlineJudge' , 'manage_options' , 'onlinejudge' , array($this,'onlinejudge_options') ,'' ,4 ) ;
 		add_action('admin_init', array($this,'onlinejudge_register_settings')) ;
 	}
 
@@ -126,9 +126,9 @@ class OnlineJudge_Admin {
 		register_setting('onlinejudge','onlinejudge') ;
 
 		add_settings_section('onlinejudge_integration','Plugins to integrate OnlineJudge with',array($this,'onlinejudge_integration_text'),'onlinejudge_settings') ;
-		add_settings_field('bpgroupsIntegration','BuddyPress Groups','onlinejudge_bpgroupsIntegration','onlinejudge_settings','onlinejudge_integration') ;
-		add_settings_field('bpglobalsearchIntegration','BuddyPress Global Search','onlinejudge_bpglobalsearchIntegration','onlinejudge_settings','onlinejudge_integration') ;
-		add_settings_field('submit','','onlinejudge_submit','onlinejudge_settings','onlinejudge_integration') ;
+		add_settings_field('bpgroupsIntegration','BuddyPress Groups',array($this,'onlinejudge_bpgroupsIntegration'),'onlinejudge_settings','onlinejudge_integration') ;
+		add_settings_field('bpglobalsearchIntegration','BuddyPress Global Search',array($this,'onlinejudge_bpglobalsearchIntegration'),'onlinejudge_settings','onlinejudge_integration') ;
+		add_settings_field('submit','',array($this,'onlinejudge_submit'),'onlinejudge_settings','onlinejudge_integration') ;
 	}
 
 	public function onlinejudge_integration_text() {
@@ -139,4 +139,17 @@ class OnlineJudge_Admin {
 		    submit_button() ;
 	}
 
+	public function onlinejudge_bpgroupsIntegration() {
+		$setting_value = get_option('onlinejudge') ;
+		$setting_value = (isset($setting_value['bpgroupsIntegration']) ? $setting_value['bpgroupsIntegration'] : null ) ;
+		if($setting_value) { $checked = ' checked="checked" '; }
+		?><input type="checkbox" name="onlinejudge[bpgroupsIntegration]" <?php echo $checked ; ?> id="bpgroupsIntegration"/><label for="bpgroupsIntegration">Add OnlineJudge functions to BP Groups</label><?php
+	}
+
+	public function onlinejudge_bpglobalsearchIntegration() {
+		$setting_value = get_option('onlinejudge') ;
+		$setting_value = (isset($setting_value['bpglobalsearchIntegration']) ? $setting_value['bpglobalsearchIntegration'] : null );
+		if($setting_value) { $checked = ' checked="checked" '; }
+		?><input type="checkbox" name="onlinejudge[bpglobalsearchIntegration]" <?php echo $checked ; ?> id="bpglobalsearchIntegration"/><label for="bpglobalsearchIntegration">Find problems using BP Global Search</label><?php
+	}
 }
