@@ -106,6 +106,11 @@ class OnlineJudge_Admin {
 		add_menu_page( 'OnlineJudge Dashboard' , 'OnlineJudge' , 'manage_options' , 'onlinejudge' , array($this,'onlinejudge_dashboard') ,'' ,4 ) ;
 		add_submenu_page( 'onlinejudge', 'OnlineJudge Languages', 'Languages', 'manage_options', 'onlinejudge_languages', array($this,'onlinejudge_languages')) ;
 		add_submenu_page( 'onlinejudge', 'OnlineJudge Categories', 'Categories', 'manage_options', 'onlinejudge_categories', array($this,'onlinejudge_categories')) ;
+		add_submenu_page( 'onlinejudge', 'OnlineJudge Problems', 'Problems', 'manage_options', 'onlinejudge_problems', array($this,'onlinejudge_problems')) ;
+		add_submenu_page( 'onlinejudge', 'OnlineJudge Submissions', 'Submissions', 'manage_options', 'onlinejudge_submissions', array($this,'onlinejudge_submissions')) ;
+		add_submenu_page( 'onlinejudge', 'OnlineJudge Problem Types', 'Problem Types', 'manage_options', 'onlinejudge_problemtypes', array($this,'onlinejudge_problemtypes')) ;
+		add_submenu_page( 'onlinejudge', 'OnlineJudge Verdicts', 'Verdicts', 'manage_options', 'onlinejudge_verdicts', array($this,'onlinejudge_verdicts')) ;
+		add_submenu_page( 'onlinejudge', 'OnlineJudge Settings', 'Settings', 'manage_options', 'onlinejudge_settings', array($this,'onlinejudge_settings')) ;
 		add_action('admin_init', array($this,'onlinejudge_register_settings')) ;
 	}
 
@@ -133,10 +138,42 @@ class OnlineJudge_Admin {
 		<?php
 	}
 
-	public function onlinejudge_options() {
-		?>  
+	public function onlinejudge_problems() {
+		?>
 		<div class="wrap">
-		<h2>OnlineJudge Dashboard</h2>
+		<h2>OnlineJudge Problems</h2>
+		</div>
+		<?php
+	}
+
+	public function onlinejudge_submissions() {
+		?>
+		<div class="wrap">
+		<h2>OnlineJudge Submissions</h2>
+		</div>
+		<?php
+	}
+
+	public function onlinejudge_problemtypes() {
+		?>
+		<div class="wrap">
+		<h2>OnlineJudge Problem Types</h2>
+		</div>
+		<?php
+	}
+
+	public function onlinejudge_verdicts() {
+		?>
+		<div class="wrap">
+		<h2>OnlineJudge Verdicts</h2>
+		</div>
+		<?php
+	}
+
+	public function onlinejudge_settings() {
+		?>
+		<div class="wrap">
+		<h2>OnlineJudge Settings</h2>
 		<form method="post" action="options.php">
 		<?php settings_fields('onlinejudge') ; ?>
 		<?php do_settings_sections('onlinejudge_settings') ; ?>
