@@ -103,7 +103,7 @@ class OnlineJudge_Admin {
 	}
 
 	public function create_admin_menu() {
-		add_options_page( 'OnlineJudge Plugin Settings' , 'OnlineJudge' , 'manage_options' , 'onlinejudge' , array($this,'onlinejudge_options') ) ;
+		add_menu_page( 'OnlineJudge Plugin Settings' , 'OnlineJudge' , 'manage_options' , 'onlinejudge' , array($this,'onlinejudge_options') ) ;
 		add_action('admin_init', array($this,'onlinejudge_register_settings')) ;
 	}
 
