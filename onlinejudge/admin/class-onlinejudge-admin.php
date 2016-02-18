@@ -52,6 +52,8 @@ class OnlineJudge_Admin {
 		$this->onlinejudge = $onlinejudge;
 		$this->version = $version;
 
+		add_action('admin_menu', array($this,'create_admin_menu')) ;
+
 	}
 
 	/**
@@ -101,8 +103,8 @@ class OnlineJudge_Admin {
 	}
 
 	public function create_admin_menu() {
-		add_options_page( 'OnlineJudge Plugin Settings' , 'OnlineJudge' , 'manage_options' , 'onlinejudge' , $this->onlinejudge_options ) ;
-		add_action('admin_init',$this->onlinejudge_register_settings) ;
+		add_options_page( 'OnlineJudge Plugin Settings' , 'OnlineJudge' , 'manage_options' , 'onlinejudge' , array($this,'onlinejudge_options') ) ;
+		add_action('admin_init', array($this,'onlinejudge_register_settings')) ;
 	}
 
 	public function onlinejudge_options() {
