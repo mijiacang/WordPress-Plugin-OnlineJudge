@@ -105,6 +105,7 @@ class OnlineJudge_Admin {
 	public function create_admin_menu() {
 		add_menu_page( 'OnlineJudge Dashboard' , 'OnlineJudge' , 'manage_options' , 'onlinejudge' , array($this,'onlinejudge_dashboard') ,'' ,4 ) ;
 		add_submenu_page( 'onlinejudge', 'OnlineJudge Languages', 'Languages', 'manage_options', 'onlinejudge_languages', array($this,'onlinejudge_languages')) ;
+		add_submenu_page( 'onlinejudge', 'OnlineJudge Categories', 'Categories', 'manage_options', 'onlinejudge_categories', array($this,'onlinejudge_categories')) ;
 		add_action('admin_init', array($this,'onlinejudge_register_settings')) ;
 	}
 
@@ -120,6 +121,14 @@ class OnlineJudge_Admin {
 		?>
 		<div class="wrap">
 		<h2>OnlineJudge Languages</h2>
+		</div>
+		<?php
+	}
+
+	public function onlinejudge_categories() {
+		?>
+		<div class="wrap">
+		<h2>OnlineJudge Categories</h2>
 		</div>
 		<?php
 	}
