@@ -125,7 +125,7 @@ class OnlineJudge_Admin {
 	public function onlinejudge_register_settings() {
 		register_setting('onlinejudge','onlinejudge') ;
 
-		add_settings_section('onlinejudge_integration','Plugins to integrate OnlineJudge with','onlinejudge_integration_text','onlinejudge_settings') ;
+		add_settings_section('onlinejudge_integration','Plugins to integrate OnlineJudge with',array($this,'onlinejudge_integration_text'),'onlinejudge_settings') ;
 		add_settings_field('bpgroupsIntegration','BuddyPress Groups','onlinejudge_bpgroupsIntegration','onlinejudge_settings','onlinejudge_integration') ;
 		add_settings_field('bpglobalsearchIntegration','BuddyPress Global Search','onlinejudge_bpglobalsearchIntegration','onlinejudge_settings','onlinejudge_integration') ;
 		add_settings_field('submit','','onlinejudge_submit','onlinejudge_settings','onlinejudge_integration') ;
