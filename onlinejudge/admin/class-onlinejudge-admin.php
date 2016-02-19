@@ -163,11 +163,7 @@ class OnlineJudge_Admin {
 	}
 
 	public function onlinejudge_verdicts() {
-		?>
-		<div class="wrap">
-		<h2>OnlineJudge Verdicts</h2>
-		</div>
-		<?php
+		require_once('
 	}
 
 	public function onlinejudge_settings() {
