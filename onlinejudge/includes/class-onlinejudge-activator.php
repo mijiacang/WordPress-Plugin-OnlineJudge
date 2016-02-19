@@ -34,7 +34,7 @@ class OnlineJudge_Activator {
 		global $wpdb;
 		$charset_collate = $wpdb->get_charset_collate();
 
-		$db_version = 33 ;  				// INCREASE EVERYTIME A DB CHANGE STRUCTURE HAPPENS
+		$db_version = 34 ;  				// INCREASE EVERYTIME A DB CHANGE STRUCTURE HAPPENS
 
 		$installed_version = get_option('onlinejudge_db_version') ;
 
@@ -116,11 +116,11 @@ class OnlineJudge_Activator {
 
 		$sql = 	"CREATE TABLE $table_name (
 				id MEDIUMINT UNSIGNED NOT NULL,
-				title TEXT NOT NULL,
+				title TINYTEXT NOT NULL,
 				problemtype MEDIUMINT UNSIGNED NOT NULL,
 				timelimit SMALLINT UNSIGNED NOT NULL,
 				memorylimit MEDIUMINT UNSIGNED NOT NULL,
-				uri TEXT NOT NULL,
+				uri TINYTEXT NOT NULL,
 				created DATETIME NOT NULL,
 				modified DATETIME NOT NULL,
 				PRIMARY KEY (id),

@@ -20,7 +20,11 @@
  * @subpackage OnlineJudge/admin
  * @author     UVa Online Judge
  */
+
+require_once('partials/onlinejudge-admin-ojlisttable.php') ;
+
 class OnlineJudge_Admin {
+
 
 	/**
 	 * The ID of this plugin.
@@ -139,11 +143,9 @@ class OnlineJudge_Admin {
 	}
 
 	public function onlinejudge_problems() {
-		?>
-		<div class="wrap">
-		<h2>OnlineJudge Problems</h2>
-		</div>
-		<?php
+		require_once('partials/onlinejudge-admin-problems.php') ;
+		$problems_admin = new Problems_Admin() ;
+		$problems_admin->getAdminPage() ;
 	}
 
 	public function onlinejudge_submissions() {
@@ -163,8 +165,12 @@ class OnlineJudge_Admin {
 	}
 
 	public function onlinejudge_verdicts() {
-		require_once('partials/onlinejudge-admin-verdicts.php') ;
-		$verdicts_admin = new Verdicts_Admin() ;
+		$verdicts_admin = new OnlineJudge_AdminPage('OnlineJudge Verdicts',
+												array('id'=>'ID','shortname'=>'Shortname','name'=>'Name'),
+												'id,shortname,name',
+												'oj_verdicts',
+												'verdict',
+												'id ASC') ;
 		$verdicts_admin->getAdminPage() ;
 	}
 
