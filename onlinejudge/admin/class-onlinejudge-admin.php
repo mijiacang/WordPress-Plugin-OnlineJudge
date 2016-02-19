@@ -163,7 +163,9 @@ class OnlineJudge_Admin {
 	}
 
 	public function onlinejudge_verdicts() {
-		require_once('
+		require_once('partials/onlinejudge-admin-verdicts.php') ;
+		$verdicts_admin = new Verdicts_Admin() ;
+		$verdicts_admin->getAdminPage() ;
 	}
 
 	public function onlinejudge_settings() {
