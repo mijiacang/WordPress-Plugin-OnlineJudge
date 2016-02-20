@@ -143,8 +143,12 @@ class OnlineJudge_Admin {
 	}
 
 	public function onlinejudge_problems() {
-		require_once('partials/onlinejudge-admin-problems.php') ;
-		$problems_admin = new Problems_Admin() ;
+		$problems_admin = new OnlineJudge_AdminPage('OnlineJudge Problems',
+												array('id'=>'ID','title'=>'Title','problemtype'=>'Type','timelimit' => 'Time Limit (ms)',
+													'memorylimit' => 'Mem Limit (kb)','created' => 'Created','modified' => 'Modified'),
+													'oj_problems',
+													'problem',
+													'id ASC') ;
 		$problems_admin->getAdminPage() ;
 	}
 
@@ -157,17 +161,17 @@ class OnlineJudge_Admin {
 	}
 
 	public function onlinejudge_problemtypes() {
-		?>
-		<div class="wrap">
-		<h2>OnlineJudge Problem Types</h2>
-		</div>
-		<?php
+		$problemtypes_admin = new OnlineJudge_AdminPage('OnlineJudge Problem Types',
+												array('id'=>'ID','name'=>'Name'),
+												'oj_problemtypes',
+												'problemtype',
+												'id ASC') ;
+		$problemtypes_admin->getAdminPage() ;
 	}
 
 	public function onlinejudge_verdicts() {
 		$verdicts_admin = new OnlineJudge_AdminPage('OnlineJudge Verdicts',
 												array('id'=>'ID','shortname'=>'Shortname','name'=>'Name'),
-												'id,shortname,name',
 												'oj_verdicts',
 												'verdict',
 												'id ASC') ;
