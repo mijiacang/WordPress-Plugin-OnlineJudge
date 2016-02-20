@@ -127,19 +127,21 @@ class OnlineJudge_Admin {
 	}
 
 	public function onlinejudge_languages() {
-		?>
-		<div class="wrap">
-		<h2>OnlineJudge Languages</h2>
-		</div>
-		<?php
+		$languages_admin = new OnlineJudge_AdminPage('OnlineJudge Languages',
+												array('id'=>'ID','shortname'=>'Shortname','version'=>'Version'),
+												'oj_languages',
+												'language',
+												'id ASC') ;
+		$languages_admin->getAdminPage() ;
 	}
 
 	public function onlinejudge_categories() {
-		?>
-		<div class="wrap">
-		<h2>OnlineJudge Categories</h2>
-		</div>
-		<?php
+		$categories_admin = new OnlineJudge_AdminPage('OnlineJudge Categories',
+												array('id'=>'ID','name'=>'Name','permalink'=>'Permalink'),
+												'oj_categories',
+												'category',
+												'id ASC') ;
+		$categories_admin->getAdminPage() ;
 	}
 
 	public function onlinejudge_problems() {

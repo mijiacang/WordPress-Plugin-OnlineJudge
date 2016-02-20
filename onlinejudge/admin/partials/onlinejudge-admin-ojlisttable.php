@@ -79,13 +79,17 @@ class OnlineJudge_AdminPage {
 
 	public function getAdminPage() {
 		$list = new OnlineJudge_List_Table($this->ojcolumns,$this->ojfields,$this->ojtable,$this->ojitem,$this->ojorder) ;
+		$list->prepare_items();
 		?>
 		<div class="wrap">
 		<h2><?php echo $this->ojtitle ;?></h2>
-		<?php
-		$list->prepare_items() ;
-		$list->display() ;
-		?>
+		<form method="post">
+			<input type="hidden" name="page" value="<?php echo $_REQUEST['page']; ?>" />
+			<?php
+			$list->search_box('Search','search_id');
+			$list->display();
+			?>
+		</form>
 		</div>
 		<?php
 	}
