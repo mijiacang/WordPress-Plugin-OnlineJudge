@@ -43,8 +43,9 @@ class OnlineJudge_List_Table extends WP_List_Table {
 	public function column_default($item, $column_name) {
 		if($column_name == array_keys($this->ojcolumns)[0]) {
 			$actions = array(
-				'edit' => sprintf('<a href="?page=%s&action=%s&' . $this->ojitem .'=%s">Edit</a>',$_REQUEST['page'],'edit',$item['id']),
-				'delete' => sprintf('<a href="?page=%s&action=%s&' . $this->ojitem .'=%s">Delete</a>',$_REQUEST['page'],'delete',$item['id'])
+				'edit' => sprintf('<a href="?page=%s&action=%s&' . $this->ojitem .'=%s" title="Edit this item">Edit</a>',$_REQUEST['page'],'edit',$item['id']),
+				'inline hide-if-no-js' => sprintf('<a href="#" title="Edit this item inline">Quick Edit</a>'),
+				'delete' => sprintf('<a href="?page=%s&action=%s&' . $this->ojitem .'=%s" title="Delete this item">Delete</a>',$_REQUEST['page'],'delete',$item['id'])
 			) ;
 			return sprintf('%1$s %2$s', $item[$column_name], $this->row_actions($actions)) ;
 		} else {
@@ -82,7 +83,7 @@ class OnlineJudge_AdminPage {
 		$list->prepare_items();
 		?>
 		<div class="wrap">
-		<h2><?php echo $this->ojtitle ;?></h2>
+		<h1><?php echo $this->ojtitle ;?><a href="?page=<?php echo $_REQUEST['page'];?>&action=add" class="page-title-action">Add New</a></h1>
 		<form method="post">
 			<input type="hidden" name="page" value="<?php echo $_REQUEST['page']; ?>" />
 			<?php
