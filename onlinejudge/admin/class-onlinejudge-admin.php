@@ -121,7 +121,7 @@ class OnlineJudge_Admin {
 	public function onlinejudge_dashboard() {
 		?>
 		<div class="wrap">
-		<h2>OnlineJudge Dashboard</h2>
+		<h1>OnlineJudge Dashboard</h1>
 		</div>
 		<?php
 	}
@@ -157,7 +157,7 @@ class OnlineJudge_Admin {
 	public function onlinejudge_submissions() {
 		?>
 		<div class="wrap">
-		<h2>OnlineJudge Submissions</h2>
+		<h1>OnlineJudge Submissions</h1>
 		</div>
 		<?php
 	}
@@ -183,7 +183,7 @@ class OnlineJudge_Admin {
 	public function onlinejudge_settings() {
 		?>
 		<div class="wrap">
-		<h2>OnlineJudge Settings</h2>
+		<h1>OnlineJudge Settings</h1>
 		<form method="post" action="options.php">
 		<?php settings_fields('onlinejudge') ; ?>
 		<?php do_settings_sections('onlinejudge_settings') ; ?>
