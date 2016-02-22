@@ -22,6 +22,7 @@
  */
 
 require_once('partials/onlinejudge-admin-ojlisttable.php') ;
+require_once('partials/onlinejudge-admin-addedit.php') ;
 
 class OnlineJudge_Admin {
 
@@ -127,6 +128,15 @@ class OnlineJudge_Admin {
 	}
 
 	public function onlinejudge_languages() {
+		if(isset($_GET['action'])) {
+			switch($_GET['action']) {
+				case 'add':
+					$languages_add = new OnlineJudge_AdminAddEdit('Add OnlineJudge Language') ;
+					$languages_add->getAddEdit() ;
+			}
+			return ;
+		}
+
 		$languages_admin = new OnlineJudge_AdminPage('OnlineJudge Languages',
 												array('id'=>'ID','shortname'=>'Shortname','version'=>'Version'),
 												'oj_languages',
@@ -136,6 +146,15 @@ class OnlineJudge_Admin {
 	}
 
 	public function onlinejudge_categories() {
+		if(isset($_GET['action'])) {
+			switch($_GET['action']) {
+				case 'add':
+					$categories_add = new OnlineJudge_AdminAddEdit('Add OnlineJudge Category') ;
+					$categories_add->getAddEdit() ;
+			}
+			return ;
+		}
+
 		$categories_admin = new OnlineJudge_AdminPage('OnlineJudge Categories',
 												array('id'=>'ID','name'=>'Name','permalink'=>'Permalink'),
 												'oj_categories',
@@ -145,6 +164,15 @@ class OnlineJudge_Admin {
 	}
 
 	public function onlinejudge_problems() {
+		if(isset($_GET['action'])) {
+			switch($_GET['action']) {
+				case 'add':
+					$problems_add = new OnlineJudge_AdminAddEdit('Add OnlineJudge Problem') ;
+					$problems_add->getAddEdit() ;
+			}
+			return ;
+		}
+
 		$problems_admin = new OnlineJudge_AdminPage('OnlineJudge Problems',
 												array('id'=>'ID','title'=>'Title','problemtype'=>'Type','timelimit' => 'Time Limit (ms)',
 													'memorylimit' => 'Mem Limit (kb)','created' => 'Created','modified' => 'Modified'),
@@ -163,6 +191,15 @@ class OnlineJudge_Admin {
 	}
 
 	public function onlinejudge_problemtypes() {
+		if(isset($_GET['action'])) {
+			switch($_GET['action']) {
+				case 'add':
+					$problemtypes_add = new OnlineJudge_AdminAddEdit('Add OnlineJudge Problem Type') ;
+					$problemtypes_add->getAddEdit() ;
+			}
+			return ;
+		}
+
 		$problemtypes_admin = new OnlineJudge_AdminPage('OnlineJudge Problem Types',
 												array('id'=>'ID','name'=>'Name'),
 												'oj_problemtypes',
@@ -172,11 +209,20 @@ class OnlineJudge_Admin {
 	}
 
 	public function onlinejudge_verdicts() {
+		if(isset($_GET['action'])) {
+			switch($_GET['action']) {
+				case 'add':
+					$verdicts_add = new OnlineJudge_AdminAddEdit('Add OnlineJudge Verdict') ;
+					$verdicts_add->getAddEdit() ;
+			}
+			return ;
+		}
+
 		$verdicts_admin = new OnlineJudge_AdminPage('OnlineJudge Verdicts',
-												array('id'=>'ID','shortname'=>'Shortname','name'=>'Name'),
-												'oj_verdicts',
-												'verdict',
-												'id ASC') ;
+									array('id'=>'ID','shortname'=>'Shortname','name'=>'Name'),
+									'oj_verdicts',
+									'verdict',
+									'id ASC') ;
 		$verdicts_admin->getAdminPage() ;
 	}
 
