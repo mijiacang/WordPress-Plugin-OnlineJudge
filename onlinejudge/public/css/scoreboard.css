@@ -1,0 +1,154 @@
+body {
+	background-color: #444444 ;
+	color: #ffffff ;
+	margin: 0px ;
+	padding: 0px ;
+/*	overflow: hidden ;  */
+}
+
+#headertitle {
+	width: 100% ;
+}
+
+#leftfiller,
+#rightfiller {
+	width: 25% ;
+}
+
+#contesttitle {
+	width: 50% ;
+	margin-top: 20px ;
+}
+
+.headeritem {
+	float: left ;
+}
+
+#scoreboard-wrapper {
+	font-family: 'Open Sans', sans-serif ;
+	font-size: 15px ;
+}
+
+#scoreboard-wrapper h1,
+#scoreboard-wrapper h3 {
+	text-align: center ;
+	margin: 0px ;
+	padding: 0px ;
+	color: white ;
+}
+
+#scoreboard-wrapper h1 {
+	font-size: 28px ;
+	font-weight: bold ;
+	padding-bottom: 10px ;
+}
+
+#scoreboard-wrapper h3 {
+	font-size: 20px ;
+	font-weight: normal ;
+}
+
+#scoreboard,
+#scoreboardheader {
+	width: 100% ;
+}
+
+#header {
+	position: fixed;
+	top:0px ;
+	background-color: #444444 ;
+}
+
+#scoreboard .row,
+#scoreboardheader .row {
+	background-color: #222222 ;
+	width: 100% ;
+	height: 100% ;
+	display: inline-block ;
+	margin: 0px ;
+	padding: 0px ;
+	margin-bottom: -4px ;
+}
+
+#scoreboard .row .cell,
+#scoreboardheader .row .cell {
+	float: left ;
+	text-align: center ;
+	vertical-align: middle ;
+	padding: 3px ;
+	margin: 3px ;
+	border-radius: 5px ;
+}
+
+.submit {
+	transition: background-color 2s, color 2s;
+}
+
+#scoreboardheader .row .avatar {
+	background-color: transparent !important ;
+}
+
+#scoreboard .row .position,
+#scoreboard .row .avatar,
+#scoreboard .row .solved,
+#scoreboard .row .time {
+	background-color: transparent !important ;
+	font-size: 36px ;
+	font-weight: bold ;
+	line-height: 68px ;
+}
+
+#scoreboard {
+	height: 80px ;
+}
+
+#scoreboard .row .contestantblock {
+	float: left ;
+}
+
+#scoreboard .row .contestantblock .contestant {
+	font-size: 28px ;
+	padding-top: 3px ;
+	padding-bottom: 3px ;
+}
+
+#scoreboard .color-0 {
+	background-color: #444444 ;
+}
+
+#scoreboard .color-0 .cell {
+	background-color: #222222 ;
+}
+
+#scoreboard .color-1 {
+	background-color: #222222 ;
+}
+
+#scoreboard .color-1 .cell {
+	background-color: #444444 ;
+}
+
+#scoreboardheader .cell {
+	background-color: #444444 ;
+}
+
+.submit {
+	font-weight: bold ;
+	color: #000 ;
+}
+
+.not {
+	color: #aaaaaa ;
+}
+
+.pending {
+	background-color: #9cf !important;
+}
+
+.wa {
+	background-color: #f99 !important;
+}
+
+.ac {
+	background-color: #bfb  !important;
+}

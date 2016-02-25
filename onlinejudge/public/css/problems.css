@@ -1,0 +1,52 @@
+#oj_categories ul,
+#oj_categories ul li
+{
+  list-style-type: none;
+  margin-left: 0px;
+}
+
+#oj_categories ul li ul
+{
+  margin-left: 15px;
+}
+
+#oj_categories
+{
+  float: left;
+  width: 250px;
+}
+
+#oj_problems
+{
+  margin-left: 250px;
+}
+
+.oj_problem
+{
+  background-color: #eeeeee;
+  border-radius: 5px;
+  border: solid 1px #bbbbbb;
+  cursor: pointer;
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 100%;
+}
+
+.oj_problem:hover
+{
+  background-color: #f4d4d8;
+}
+
+.oj_problem .oj_problem_title
+{
+  font-size: 16px;
+  font-weight: bold;
+  width: 100%;
+}
+
+.oj_problem .oj_problem_stats
+{
+  padding-top: 8px;
+  width: 100%;
+}
+
