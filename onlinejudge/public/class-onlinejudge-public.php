@@ -76,4 +76,34 @@ class OnlineJudge_Public {
 
 	}
 
+	public function register_problems_post() {
+
+		register_post_type('problems',
+			array(
+				'labels' => array(
+					'name' => 'Problems',
+					'singular_name' => 'Problem'
+				),
+				'public' => true,
+				'has_archive' => true,
+				'show_ui' => false,
+				'exclude_from_search' => true,
+			)
+		) ;
+
+	}
+
+	public function custom_post_template_archive($archive_template) {
+		global $post ;
+
+		if(is_post_type_archive('problems')) {
+			$archive_template = dirname(__FILE__) . '/templates/archive-problems.php' ;
+		}
+		return $archive_template ;
+	}
+
+	public function custom_post_template_single($single_template) {
+
+	}
+
 }
