@@ -3,7 +3,7 @@
 /**
  * Fired during plugin activation
  *
- * @link       http://example.com
+ * @link       https://github.com/UVaOJ/WordPress-Plugin-OnlineJudge
  * @since      0.0.1
  *
  * @package    OnlineJudge
@@ -18,7 +18,7 @@
  * @since      0.0.1
  * @package    OnlineJudge
  * @subpackage OnlineJudge/includes
- * @author     Your Name <email@example.com>
+ * @author     Miguel Revilla <yo@miguelrevilla.com>
  */
 class OnlineJudge_Activator {
 

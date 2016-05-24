@@ -5,7 +5,7 @@
  *
  * This file is used to markup the public-facing aspects of the plugin.
  *
- * @link       http://example.com
+ * @link       https://github.com/UVaOJ/WordPress-Plugin-OnlineJudge
  * @since      0.0.1
  *
  * @package    OnlineJudge

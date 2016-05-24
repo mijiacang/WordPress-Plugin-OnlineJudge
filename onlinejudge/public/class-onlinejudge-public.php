@@ -61,18 +61,6 @@ class OnlineJudge_Public {
 	 */
 	public function enqueue_styles() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in OnlineJudge_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The OnlineJudge_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		wp_enqueue_style( $this->onlinejudge, plugin_dir_url( __FILE__ ) . 'css/onlinejudge-public.css', array(), $this->version, 'all' );
 
 	}
@@ -83,18 +71,6 @@ class OnlineJudge_Public {
 	 * @since    0.0.1
 	 */
 	public function enqueue_scripts() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in OnlineJudge_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The OnlineJudge_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
 
 		wp_enqueue_script( $this->onlinejudge, plugin_dir_url( __FILE__ ) . 'js/onlinejudge-public.js', array( 'jquery' ), $this->version, false );
 

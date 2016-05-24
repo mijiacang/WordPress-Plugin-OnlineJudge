@@ -6,8 +6,8 @@
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
  *
- * @link       http://example.com
- * @since      1.0.0
+ * @link       https://github.com/UVaOJ/WordPress-Plugin-OnlineJudge
+ * @since      0.0.1
  *
  * @package    OnlineJudge
  * @subpackage OnlineJudge/includes
@@ -19,10 +19,10 @@
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
  *
- * @since      1.0.0
+ * @since      0.0.1
  * @package    OnlineJudge
  * @subpackage OnlineJudge/includes
- * @author     Your Name <email@example.com>
+ * @author     Miguel Revilla <yo@miguelrevilla.com>
  */
 class OnlineJudge_i18n {
 

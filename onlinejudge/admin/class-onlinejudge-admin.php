@@ -68,18 +68,6 @@ class OnlineJudge_Admin {
 	 */
 	public function enqueue_styles() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in OnlineJudge_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The OnlineJudge_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		wp_enqueue_style( $this->onlinejudge, plugin_dir_url( __FILE__ ) . 'css/onlinejudge-admin.css', array(), $this->version, 'all' );
 
 	}
@@ -91,18 +79,6 @@ class OnlineJudge_Admin {
 	 */
 	public function enqueue_scripts() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in OnlineJudge_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The OnlineJudge_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		wp_enqueue_script( $this->onlinejudge, plugin_dir_url( __FILE__ ) . 'js/onlinejudge-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
@@ -112,6 +88,7 @@ class OnlineJudge_Admin {
 		add_submenu_page( 'onlinejudge', 'OnlineJudge Languages', 'Languages', 'manage_options', 'onlinejudge_languages', array($this,'onlinejudge_languages')) ;
 		add_submenu_page( 'onlinejudge', 'OnlineJudge Categories', 'Categories', 'manage_options', 'onlinejudge_categories', array($this,'onlinejudge_categories')) ;
 		add_submenu_page( 'onlinejudge', 'OnlineJudge Problems', 'Problems', 'manage_options', 'onlinejudge_problems', array($this,'onlinejudge_problems')) ;
+		add_submenu_page( 'onlinejudge', 'OnlineJudge Contests', 'Contests', 'manage_contest', 'onlinejudge_contests', array($this,'onlinejudge_contests')) ;
 		add_submenu_page( 'onlinejudge', 'OnlineJudge Submissions', 'Submissions', 'manage_options', 'onlinejudge_submissions', array($this,'onlinejudge_submissions')) ;
 		add_submenu_page( 'onlinejudge', 'OnlineJudge Problem Types', 'Problem Types', 'manage_options', 'onlinejudge_problemtypes', array($this,'onlinejudge_problemtypes')) ;
 		add_submenu_page( 'onlinejudge', 'OnlineJudge Verdicts', 'Verdicts', 'manage_options', 'onlinejudge_verdicts', array($this,'onlinejudge_verdicts')) ;
@@ -139,10 +116,10 @@ class OnlineJudge_Admin {
 		}
 
 		$languages_admin = new OnlineJudge_AdminPage('OnlineJudge Languages',
-												array('id'=>'ID','shortname'=>'Shortname','version'=>'Version'),
-												'oj_languages',
-												'language',
-												'id ASC') ;
+				array('id'=>'ID','shortname'=>'Shortname','version'=>'Version'),
+				'oj_languages',
+				'language',
+				'id ASC') ;
 		$languages_admin->getAdminPage() ;
 	}
 
@@ -157,10 +134,10 @@ class OnlineJudge_Admin {
 		}
 
 		$categories_admin = new OnlineJudge_AdminPage('OnlineJudge Categories',
-												array('id'=>'ID','name'=>'Name','permalink'=>'Permalink'),
-												'oj_categories',
-												'category',
-												'id ASC') ;
+				array('id'=>'ID','name'=>'Name','permalink'=>'Permalink'),
+				'oj_categories',
+				'category',
+				'id ASC') ;
 		$categories_admin->getAdminPage() ;
 	}
 
@@ -220,10 +197,10 @@ class OnlineJudge_Admin {
 		}
 
 		$verdicts_admin = new OnlineJudge_AdminPage('OnlineJudge Verdicts',
-									array('id'=>'ID','shortname'=>'Shortname','name'=>'Name'),
-									'oj_verdicts',
-									'verdict',
-									'id ASC') ;
+				array('id'=>'ID','shortname'=>'Shortname','name'=>'Name'),
+				'oj_verdicts',
+				'verdict',
+				'id ASC') ;
 		$verdicts_admin->getAdminPage() ;
 	}
 

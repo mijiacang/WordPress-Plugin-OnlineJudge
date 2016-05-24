@@ -3,8 +3,8 @@
 /**
  * Fired during plugin deactivation
  *
- * @link       http://example.com
- * @since      1.0.0
+ * @link       https://github.com/UVaOJ/WordPress-Plugin-OnlineJudge
+ * @since      0.0.1
  *
  * @package    OnlineJudge
  * @subpackage OnlineJudge/includes
@@ -15,10 +15,10 @@
  *
  * This class defines all code necessary to run during the plugin's deactivation.
  *
- * @since      1.0.0
+ * @since      0.0.1
  * @package    OnlineJudge
  * @subpackage OnlineJudge/includes
- * @author     Your Name <email@example.com>
+ * @author     Miguel Revilla <yo@miguelrevilla.com>
  */
 class OnlineJudge_Deactivator {
 
@@ -27,7 +27,7 @@ class OnlineJudge_Deactivator {
 	 *
 	 * Long Description.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 */
 	public static function deactivate() {
 
