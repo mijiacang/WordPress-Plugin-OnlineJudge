@@ -125,6 +125,7 @@ class OnlineJudge_Admin {
 		<h1>OnlineJudge Dashboard</h1>
 		</div>
 		<?php
+		echo plugins_url("/",__FILE__);
 	}
 
 	public function onlinejudge_languages() {
@@ -174,11 +175,11 @@ class OnlineJudge_Admin {
 		}
 
 		$problems_admin = new OnlineJudge_AdminPage('OnlineJudge Problems',
-												array('id'=>'ID','title'=>'Title','problemtype'=>'Type','timelimit' => 'Time Limit (ms)',
-													'memorylimit' => 'Mem Limit (kb)','created' => 'Created','modified' => 'Modified'),
-													'oj_problems',
-													'problem',
-													'id ASC') ;
+					array('id'=>'ID','title'=>'Title','problemtype'=>'Type','timelimit' => 'Time Limit (ms)',
+					'memorylimit' => 'Mem Limit (kb)','created' => 'Created','modified' => 'Modified'),
+					'oj_problems',
+					'problem',
+					'id ASC') ;
 		$problems_admin->getAdminPage() ;
 	}
 
