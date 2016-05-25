@@ -103,6 +103,7 @@ class OnlineJudge_Admin {
 		</div>
 		<?php
 		echo plugins_url("/",__FILE__);
+
 	}
 
 	public function onlinejudge_languages() {

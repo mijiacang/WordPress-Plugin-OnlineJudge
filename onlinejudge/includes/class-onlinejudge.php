@@ -170,10 +170,10 @@ class OnlineJudge {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
-		$this->loader->add_action( 'init', $plugin_public, 'register_problems_post' ) ;
+		$this->loader->add_action( 'init', $plugin_public, 'register_problems_post' );
 
-		$this->loader->add_filter( 'archive_template', $plugin_public, 'custom_post_template_archive' ) ;
-		$this->loader->add_filter( 'single_template', $plugin_public, 'custom_post_template_single' ) ;
+		$this->loader->add_filter( 'template_include', $plugin_public, 'custom_404_template' );
+		$this->loader->add_filter( 'archive_template', $plugin_public, 'custom_post_template_archive' );
 
 	}
 

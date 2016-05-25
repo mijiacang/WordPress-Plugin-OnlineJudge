@@ -2,3 +2,396 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+
+#code_wrapper
+{
+  width: 100%;
+}
+
+#code_wrapper #left_menu
+{
+  float: left;
+  height: 100px;
+  width: 250px;
+}
+
+#code_wrapper #left_menu .submission
+{   
+	width: 220px;
+	background-color: #eeeeee;
+	border-radius: 5px;
+	border: solid 1px #bbbbbb;
+	margin-bottom: 10px;
+	height: 50px;
+}
+
+#code_wrapper #left_menu .submission .loadcode
+{
+	float: right ;
+	line-height: 50px ;
+	vertical-align: middle ;
+	padding-right: 5px ;
+	padding-top: 2px ;
+	cursor: pointer ;
+}
+
+#code_wrapper #left_menu .submission {
+	position: relative;
+}
+
+#code_wrapper #left_menu .info,
+#code_wrapper #left_menu .backtitle
+{
+	position: absolute ;
+	padding-left: 8px ;
+	padding-top: 5px ;
+	top: 0px ;
+	left: 0px ;
+	width: 100% ;
+	height: 100% ;
+}
+
+#code_wrapper #left_menu .submission
+{
+}
+
+#code_wrapper #left_menu .backtitle
+{
+	padding: 0px ;
+	text-align: center ;
+	line-height: 50px ;
+	vertical-align: middle ;
+	font-size: 40px ;
+	font-weight: bold ;
+}
+
+#code_wrapper #left_menu #draft .saved
+{
+	color: #ccffcc ;
+	background-color: #aaffaa ;
+}
+
+#code_wrapper #left_menu #draft .unsaved
+{
+	color: #ffcccc ;
+	background-color: #ffbbbb ;
+}
+
+#code_wrapper #code_editor_wrapper
+{
+  width: 100%;
+}
+
+#code_wrapper #code_editor
+{
+  border: 1px solid gray;
+  height: 500px;
+  position: relative;
+}
+
+#problemWrapper #leftMenu
+{
+  float: left;
+  width: 250px;
+}
+
+#problemWrapper #pdfContainer
+{
+  float: right;
+}
+
+::selection { background:rgba(0,0,255,0.3); }
+::-moz-selection { background:rgba(0,0,255,0.3); }
+
+.textLayer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    color: #000;
+    font-family: sans-serif;
+    overflow: hidden;
+}
+
+.textLayer > div {
+    color: transparent;
+    position: absolute;
+    line-height: 1;
+    white-space: pre;
+    cursor: text;
+}
+
+.textLayer .highlight {
+    margin: -1px;
+    padding: 1px;
+
+    background-color: rgba(180, 0, 170, 0.2);
+    border-radius: 4px;
+}
+
+.textLayer .highlight.begin {
+    border-radius: 4px 0px 0px 4px;
+}
+
+.textLayer .highlight.end {
+    border-radius: 0px 4px 4px 0px;
+}
+
+.textLayer .highlight.middle {
+    border-radius: 0px;
+}
+
+.textLayer .highlight.selected {
+    background-color: rgba(0, 100, 0, 0.2);
+}
+#oj_categories ul,
+#oj_categories ul li
+{
+  list-style-type: none;
+  margin-left: 0px;
+}
+
+#oj_categories ul li ul
+{
+  margin-left: 15px;
+}
+
+#oj_categories
+{
+  float: left;
+  width: 250px;
+}
+
+#oj_problems
+{
+  margin-left: 250px;
+}
+
+.oj_problem
+{
+  background-color: #eeeeee;
+  border-radius: 5px;
+  border: solid 1px #bbbbbb;
+  cursor: pointer;
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 100%;
+}
+
+.oj_problem:hover
+{
+  background-color: #f4d4d8;
+}
+
+.oj_problem .oj_problem_title
+{
+  font-size: 16px;
+  font-weight: bold;
+  width: 100%;
+}
+
+.oj_problem .oj_problem_stats
+{
+  padding-top: 8px;
+  width: 100%;
+}
+
+body {
+	background-color: #444444 ;
+	color: #ffffff ;
+	margin: 0px ;
+	padding: 0px ;
+/*	overflow: hidden ;  */
+}
+
+#headertitle {
+	width: 100% ;
+}
+
+#leftfiller,
+#rightfiller {
+	width: 25% ;
+}
+
+#contesttitle {
+	width: 50% ;
+	margin-top: 20px ;
+}
+
+.headeritem {
+	float: left ;
+}
+
+#scoreboard-wrapper {
+	font-family: 'Open Sans', sans-serif ;
+	font-size: 15px ;
+}
+
+#scoreboard-wrapper h1,
+#scoreboard-wrapper h3 {
+	text-align: center ;
+	margin: 0px ;
+	padding: 0px ;
+	color: white ;
+}
+
+#scoreboard-wrapper h1 {
+	font-size: 28px ;
+	font-weight: bold ;
+	padding-bottom: 10px ;
+}
+
+#scoreboard-wrapper h3 {
+	font-size: 20px ;
+	font-weight: normal ;
+}
+
+#scoreboard,
+#scoreboardheader {
+	width: 100% ;
+}
+
+#header {
+	position: fixed;
+	top:0px ;
+	background-color: #444444 ;
+}
+
+#scoreboard .row,
+#scoreboardheader .row {
+	background-color: #222222 ;
+	width: 100% ;
+	height: 100% ;
+	display: inline-block ;
+	margin: 0px ;
+	padding: 0px ;
+	margin-bottom: -4px ;
+}
+
+#scoreboard .row .cell,
+#scoreboardheader .row .cell {
+	float: left ;
+	text-align: center ;
+	vertical-align: middle ;
+	padding: 3px ;
+	margin: 3px ;
+	border-radius: 5px ;
+}
+
+.submit {
+	transition: background-color 2s, color 2s;
+}
+
+#scoreboardheader .row .avatar {
+	background-color: transparent !important ;
+}
+
+#scoreboard .row .position,
+#scoreboard .row .avatar,
+#scoreboard .row .solved,
+#scoreboard .row .time {
+	background-color: transparent !important ;
+	font-size: 36px ;
+	font-weight: bold ;
+	line-height: 68px ;
+}
+
+#scoreboard {
+	height: 80px ;
+}
+
+#scoreboard .row .contestantblock {
+	float: left ;
+}
+
+#scoreboard .row .contestantblock .contestant {
+	font-size: 28px ;
+	padding-top: 3px ;
+	padding-bottom: 3px ;
+}
+
+#scoreboard .color-0 {
+	background-color: #444444 ;
+}
+
+#scoreboard .color-0 .cell {
+	background-color: #222222 ;
+}
+
+#scoreboard .color-1 {
+	background-color: #222222 ;
+}
+
+#scoreboard .color-1 .cell {
+	background-color: #444444 ;
+}
+
+#scoreboardheader .cell {
+	background-color: #444444 ;
+}
+
+.submit {
+	font-weight: bold ;
+	color: #000 ;
+}
+
+.not {
+	color: #aaaaaa ;
+}
+
+.pending {
+	background-color: #9cf !important;
+}
+
+.wa {
+	background-color: #f99 !important;
+}
+
+.ac {
+	background-color: #bfb  !important;
+}
+/**
+ *	This element is created inside your target element
+ *	It is used so that your own element will not need to be altered
+ **/
+.time_circles {
+    position: relative;
+    width: 100%;
+/*    height: 100%; */
+	height: 100px ;
+}
+
+/**
+ *	This is all the elements used to house all text used
+ * in time circles
+ **/
+.time_circles > div {
+    position: absolute;
+    text-align: center;
+}
+
+/**
+ *	Titles (Days, Hours, etc)
+ **/
+.time_circles > div > h4 {
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+	color: white ;
+}
+
+/**
+ *	Time numbers, ie: 12
+ **/
+.time_circles > div > span {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 300%;
+    margin-top: 0.4em;
+    font-weight: bold;
+}

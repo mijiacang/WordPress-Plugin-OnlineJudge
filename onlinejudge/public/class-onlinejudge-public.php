@@ -102,8 +102,18 @@ class OnlineJudge_Public {
 		return $archive_template ;
 	}
 
-	public function custom_post_template_single($single_template) {
+	public function custom_404_template($template) {
+		global $wp_query ;
 
+		if(is_404() && (get_query_var('post_type') == 'problems')) {
+			status_header('200');
+			$wp_query->is_page = true ;
+			$wp_query->is_singular = true ;
+			$wp_query->is_404 = false ;
+			$template = dirname(__FILE__) . '/templates/single-problems.php' ;
+		}
+
+		return $template ;
 	}
 
 }
