@@ -76,8 +76,7 @@ class OnlineJudge_Public {
 
 	}
 
-	public function register_problems_post() {
-
+	private function register_problems_post() {
 		register_post_type('problems',
 			array(
 				'labels' => array(
@@ -88,14 +87,28 @@ class OnlineJudge_Public {
 				'has_archive' => true,
 				'show_ui' => false,
 				'exclude_from_search' => true,
+				'hierarchical' => true,
 			)
 		) ;
+	}
 
+	private function register_problem_post() {
+		register_post_type('problem',
+			array(
+				'labels' => array(
+					'name' => 'Problems',
+					'singular_name' => 'Problem'
+				),
+				'public' => true,
+				'has_archive' => false,
+				'show_ui' => false,
+				'exclude_from_search' => true,
+				'hierarchical' => false,
+			)
+		) ;
 	}
 
 	public function custom_post_template_archive($archive_template) {
-		global $post ;
-
 		if(is_post_type_archive('problems')) {
 			$archive_template = dirname(__FILE__) . '/templates/archive-problems.php' ;
 		}
@@ -105,15 +118,27 @@ class OnlineJudge_Public {
 	public function custom_404_template($template) {
 		global $wp_query ;
 
-		if(is_404() && (get_query_var('post_type') == 'problems')) {
+		if(is_404()) {
 			status_header('200');
 			$wp_query->is_page = true ;
 			$wp_query->is_singular = true ;
 			$wp_query->is_404 = false ;
-			$template = dirname(__FILE__) . '/templates/single-problems.php' ;
+			switch(get_query_var('post_type')) {
+				case 'problems':
+					$template = dirname(__FILE__) . '/templates/archive-problems.php' ;
+					break ;
+				case 'problem':
+					$template = dirname(__FILE__) . '/templates/single-problem.php' ;
+					break ;
+			}
 		}
 
 		return $template ;
+	}
+
+	public function register_post_types() {
+		$this->register_problems_post() ;
+		$this->register_problem_post() ;
 	}
 
 }
