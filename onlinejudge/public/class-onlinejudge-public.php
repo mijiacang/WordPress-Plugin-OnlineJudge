@@ -40,6 +40,8 @@ class OnlineJudge_Public {
 	 */
 	private $version;
 
+	private $post_types;
+
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -51,6 +53,8 @@ class OnlineJudge_Public {
 
 		$this->onlinejudge = $onlinejudge;
 		$this->version = $version;
+
+		$this->post_types = array() ;
 
 	}
 
@@ -76,7 +80,25 @@ class OnlineJudge_Public {
 
 	}
 
+	private function register_api_post() {
+
+		array_push($this->post_types,'api') ;
+
+		register_post_type('api',
+			array(
+				'public' => true,
+				'has_archive' => true,
+				'show_ui' => false,
+				'exclude_from_search' => true,
+				'hierarchical' => true,
+			)
+		) ;
+	}
+
 	private function register_problems_post() {
+
+		array_push($this->post_types,'problems') ;
+
 		register_post_type('problems',
 			array(
 				'labels' => array(
@@ -93,6 +115,9 @@ class OnlineJudge_Public {
 	}
 
 	private function register_problem_post() {
+
+		array_push($this->post_types,'problem') ;
+
 		register_post_type('problem',
 			array(
 				'labels' => array(
@@ -109,7 +134,9 @@ class OnlineJudge_Public {
 	}
 
 	public function custom_post_template_archive($archive_template) {
-		if(is_post_type_archive('problems')) {
+		if(is_post_type_archive('api')) {
+			$archive_template = dirname(__FILE__) . '/templates/archive-api.php' ;
+		} elseif(is_post_type_archive('problems')) {
 			$archive_template = dirname(__FILE__) . '/templates/archive-problems.php' ;
 		}
 		return $archive_template ;
@@ -118,12 +145,15 @@ class OnlineJudge_Public {
 	public function custom_404_template($template) {
 		global $wp_query ;
 
-		if(is_404()) {
+		if(is_404() && in_array(get_query_var('post_type'),$this->post_types)) {
 			status_header('200');
 			$wp_query->is_page = true ;
 			$wp_query->is_singular = true ;
 			$wp_query->is_404 = false ;
 			switch(get_query_var('post_type')) {
+				case 'api':
+					$template = dirname(__FILE__) . '/archive-api.php' ;
+					break ;
 				case 'problems':
 					$template = dirname(__FILE__) . '/templates/archive-problems.php' ;
 					break ;
@@ -137,6 +167,7 @@ class OnlineJudge_Public {
 	}
 
 	public function register_post_types() {
+		$this->register_api_post() ;
 		$this->register_problems_post() ;
 		$this->register_problem_post() ;
 	}
