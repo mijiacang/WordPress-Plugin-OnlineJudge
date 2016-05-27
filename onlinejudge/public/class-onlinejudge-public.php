@@ -152,7 +152,7 @@ class OnlineJudge_Public {
 			$wp_query->is_404 = false ;
 			switch(get_query_var('post_type')) {
 				case 'api':
-					$template = dirname(__FILE__) . '/archive-api.php' ;
+					$template = dirname(__FILE__) . '/templates/archive-api.php' ;
 					break ;
 				case 'problems':
 					$template = dirname(__FILE__) . '/templates/archive-problems.php' ;
