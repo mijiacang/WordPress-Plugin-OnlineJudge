@@ -107,58 +107,64 @@ class OnlineJudge_Admin {
 	}
 
 	public function onlinejudge_languages() {
-		if(isset($_GET['action'])) {
-			switch($_GET['action']) {
-				case 'add':
-					$languages_add = new OnlineJudge_AdminAddEdit('Add OnlineJudge Language') ;
-					$languages_add->getAddEdit() ;
-			}
-			return ;
-		}
 
-		$languages_admin = new OnlineJudge_AdminPage('OnlineJudge Languages',
-				array('id'=>'ID','shortname'=>'Shortname','version'=>'Version'),
-				'oj_languages',
-				'language',
-				'id ASC') ;
-		$languages_admin->getAdminPage() ;
+		$params = array() ;
+		$fields = array() ;
+
+		array_push($fields,array('dbname'=>'id','name'=>'ID','type'=>'auto','editable'=>false,'showlist'=>true)) ;
+		array_push($fields,array('dbname'=>'shortname','name'=>'Shortname','type'=>'input','editable'=>true,'showlist'=>true)) ;
+		array_push($fields,array('dbname'=>'version','name'=>'Version','type'=>'input','editable'=>true,'showlist'=>true)) ;
+
+		$params['title_single'] = 'OnlineJudge Language' ;
+		$params['title_plural'] = 'OnlineJudge Languages' ;
+		$params['table'] = 'oj_languages' ;
+		$params['listorder'] = 'id ASC' ;
+		$params['fields'] = $fields ;
+
+		$this->manageAction($params) ;
+
 	}
 
 	public function onlinejudge_categories() {
-		if(isset($_GET['action'])) {
-			switch($_GET['action']) {
-				case 'add':
-					$categories_add = new OnlineJudge_AdminAddEdit('Add OnlineJudge Category') ;
-					$categories_add->getAddEdit() ;
-			}
-			return ;
-		}
 
-		$categories_admin = new OnlineJudge_AdminPage('OnlineJudge Categories',
-				array('id'=>'ID','name'=>'Name','permalink'=>'Permalink'),
-				'oj_categories',
-				'category',
-				'id ASC') ;
-		$categories_admin->getAdminPage() ;
+		$params = array() ;
+		$fields = array() ;
+
+		array_push($fields,array('dbname'=>'id','name'=>'ID','type'=>'auto','editable'=>false,'showlist'=>true)) ;
+		array_push($fields,array('dbname'=>'name','name'=>'Name','type'=>'input','editable'=>true,'showlist'=>true)) ;
+		array_push($fields,array('dbname'=>'permalink','name'=>'Permalink','type'=>'input','editable'=>'true','showlist'=>true)) ;
+
+		$params['title_single'] = 'OnlineJudge Category' ;
+		$params['title_plural'] = 'OnlineJudge Categories' ;
+		$params['table'] = 'oj_categories' ;
+		$params['listorder'] = 'id ASC' ;
+		$params['fields'] = $fields ;
+
+		$this->manageAction($params) ;
+		
 	}
 
 	public function onlinejudge_problems() {
-		if(isset($_GET['action'])) {
-			switch($_GET['action']) {
-				case 'add':
-					$problems_add = new OnlineJudge_AdminAddEdit('Add OnlineJudge Problem') ;
-					$problems_add->getAddEdit() ;
-			}
-			return ;
-		}
 
-		$problems_admin = new OnlineJudge_AdminPage('OnlineJudge Problems',
-					array('id'=>'ID','title'=>'Title','problemtype'=>'Type','timelimit' => 'Time Limit (ms)',
-					'memorylimit' => 'Mem Limit (kb)','created' => 'Created','modified' => 'Modified'),
-					'oj_problems',
-					'problem',
-					'id ASC') ;
-		$problems_admin->getAdminPage() ;
+		$params = array() ;
+		$fields = array() ;
+
+		array_push($fields,array('dbname'=>'id','name'=>'ID','type'=>'input','editable'=>true,'showlist'=>true)) ;
+		array_push($fields,array('dbname'=>'title','name'=>'Title','type'=>'input','editable'=>true,'showlist'=>true)) ;
+		array_push($fields,array('dbname'=>'problemtype','name'=>'Type','type'=>'problemtype','editable'=>true,'showlist'=>false)) ;
+		array_push($fields,array('dbname'=>'timelimit','name'=>'Time Limit (ms)','type'=>'input','editable'=>true,'showlist'=>true)) ;
+		array_push($fields,array('dbname'=>'memorylimit','name'=>'Mem Limit (kb)','type'=>'input','editable'=>true,'showlist'=>true)) ;
+		array_push($fields,array('dbname'=>'created','name'=>'Created','type'=>'datetime','editable'=>false,'showlist'=>true)) ;
+		array_push($fields,array('dbname'=>'modified','name'=>'Modified','type'=>'datetime','editable'=>true,'showlist'=>true)) ;
+
+		$params['title_single'] = 'OnlineJudge Problem' ;
+		$params['title_plural'] = 'OnlineJudge Problems' ;
+		$params['table'] = 'oj_problems' ;
+		$params['listorder'] = 'id ASC' ;
+		$params['fields'] = $fields ;
+	
+		$this->manageAction($params) ;
+
 	}
 
 	public function onlinejudge_submissions() {
@@ -170,39 +176,53 @@ class OnlineJudge_Admin {
 	}
 
 	public function onlinejudge_problemtypes() {
-		if(isset($_GET['action'])) {
-			switch($_GET['action']) {
-				case 'add':
-					$problemtypes_add = new OnlineJudge_AdminAddEdit('Add OnlineJudge Problem Type') ;
-					$problemtypes_add->getAddEdit() ;
-			}
-			return ;
-		}
 
-		$problemtypes_admin = new OnlineJudge_AdminPage('OnlineJudge Problem Types',
-												array('id'=>'ID','name'=>'Name'),
-												'oj_problemtypes',
-												'problemtype',
-												'id ASC') ;
-		$problemtypes_admin->getAdminPage() ;
+		$params = array() ;
+		$fields = array() ;
+
+		array_push($fields,array('dbname'=>'id','name'=>'ID','type'=>'auto','editable'=>false,'showlist'=>true)) ;
+		array_push($fields,array('dbname'=>'name','name'=>'Name','type'=>'input','editable'=>true,'showlist'=>true)) ;
+
+		$params['title_single'] = 'OnlineJudge Problem Type' ;
+		$params['title_plural'] = 'OnlineJudge Problem Types' ;
+		$params['table'] = 'oj_problemtypes' ;
+		$params['listorder'] = 'id ASC' ;
+		$params['fields'] = $fields ;
+
+		$this->manageAction($params) ;
 	}
 
 	public function onlinejudge_verdicts() {
-		if(isset($_GET['action'])) {
-			switch($_GET['action']) {
-				case 'add':
-					$verdicts_add = new OnlineJudge_AdminAddEdit('Add OnlineJudge Verdict') ;
-					$verdicts_add->getAddEdit() ;
-			}
+
+		$params = array() ;
+		$fields = array() ;
+
+		array_push($fields,array('dbname'=>'id','name'=>'ID','type'=>'input','editable'=>true,'showlist'=>true)) ;
+		array_push($fields,array('dbname'=>'shortname','name'=>'Shortname','type'=>'input','editable'=>true,'showlist'=>true)) ;
+		array_push($fields,array('dbname'=>'name','name'=>'Name','type'=>'input','editable'=>true,'showlist'=>true)) ;
+
+		$params['title_single'] = 'OnlineJudge Verdict' ;
+		$params['title_plural'] = 'OnlineJudge Verdicts' ;
+		$params['table'] = 'oj_verdicts' ;
+		$params['listorder'] = 'id ASC' ;
+		$params['fields'] = $fields ;
+
+		$this->manageAction($params) ;
+	}
+
+	private function manageAction($params) {
+		if(isset($_GET['action']) && in_array($_GET['action'],array('add','edit'))) {
+			$params['action'] = $_GET['action'] ;
+			if(isset($_GET['item'])) $params['item'] = $_GET['item'] ;
+
+			$item_action = new OnlineJudge_AdminAddEdit($params) ;
+			$item_action->getAddEdit() ;
 			return ;
 		}
 
-		$verdicts_admin = new OnlineJudge_AdminPage('OnlineJudge Verdicts',
-				array('id'=>'ID','shortname'=>'Shortname','name'=>'Name'),
-				'oj_verdicts',
-				'verdict',
-				'id ASC') ;
-		$verdicts_admin->getAdminPage() ;
+		$item_admin = new OnlineJudge_AdminPage($params) ;
+		$item_admin->getAdminPage() ;
+		return ;
 	}
 
 	public function onlinejudge_settings() {

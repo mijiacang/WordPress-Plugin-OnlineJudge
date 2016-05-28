@@ -38,9 +38,11 @@ class OnlineJudge_List_Table extends WP_List_Table {
 		$sortable = array() ;
 		$this->_column_headers = array($columns,$hidden,$sortable) ;
 		$this->items = $wpdb->get_results("SELECT " . $this->ojfields . " FROM " . $this->ojtable . ($this->ojorder != '' ? " ORDER BY ".$this->ojorder : ''),ARRAY_A) ;
+
 	}
 
 	public function column_default($item, $column_name) {
+
 		if($column_name == array_keys($this->ojcolumns)[0]) {
 			$actions = array(
 				'edit' => sprintf('<a href="?page=%s&action=%s&' . $this->ojitem .'=%s" title="Edit this item">Edit</a>',$_REQUEST['page'],'edit',$item['id']),
@@ -58,21 +60,24 @@ class OnlineJudge_List_Table extends WP_List_Table {
 class OnlineJudge_AdminPage {
 
 	private $ojtitle ;
-	private $ojcolumns ;
 	private $ojfields ;
+	private $ojcolumns ;
 	private $ojtable ;
 	private $ojitem ;
 	private $ojorder ;
 
-	public function __construct($title,$columns,$table,$item,$order = '') {
-		$this->ojtitle = $title ;
-		$this->ojcolumns = $columns ;
-		$this->ojtable = $table ;
-		$this->ojitem = $item ;
-		$this->ojorder = $order ;
+	public function __construct($params) {
+		$this->ojtitle = $params['title_plural'] ;
+		$this->ojtable = $params['table'] ;
+		$this->ojitem = 'item' ;
+		$this->ojorder = $params['listorder'] ;
+		$this->ojcolumns = array() ;
 
-		foreach(array_keys($this->ojcolumns) as $key) {
-			$this->ojfields .= $key."," ;
+		foreach($params['fields'] as $field) {
+			if($field['showlist']) {
+				$this->ojfields .= $field['dbname']."," ;
+				$this->ojcolumns[$field['dbname']] = $field['name'] ;
+			}
 		}
 
 		$this->ojfields = substr($this->ojfields,0,-1) ;
