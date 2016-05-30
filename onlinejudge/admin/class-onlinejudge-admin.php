@@ -133,6 +133,7 @@ class OnlineJudge_Admin {
 		array_push($fields,array('dbname'=>'id','name'=>'ID','type'=>'auto','editable'=>false,'showlist'=>true)) ;
 		array_push($fields,array('dbname'=>'name','name'=>'Name','type'=>'input','editable'=>true,'showlist'=>true)) ;
 		array_push($fields,array('dbname'=>'permalink','name'=>'Permalink','type'=>'input','editable'=>'true','showlist'=>true)) ;
+		array_push($fields,array('dbname'=>'parent','name'=>'Parent','type'=>'categories','editable'=>'true','showlist'=>true)) ;
 
 		$params['title_single'] = 'OnlineJudge Category' ;
 		$params['title_plural'] = 'OnlineJudge Categories' ;
