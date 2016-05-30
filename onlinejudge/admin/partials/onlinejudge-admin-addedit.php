@@ -11,6 +11,8 @@ class OnlineJudge_AdminAddEdit {
 
 	public function __construct($params) {
 
+		global $wpdb ;
+
 		$this->params = $params ;
 
 		$this->ojtitle = ($params['action']=='add'?"Add ":"Edit ").$params['title_single'] ;
@@ -21,6 +23,23 @@ class OnlineJudge_AdminAddEdit {
 	}
 
 	public function getAddEdit() {
+
+		global $wpdb ;
+
+		$field_array = array() ;
+
+		if($this->action=='edit') {
+			$field_string = '' ;
+			foreach($this->params['fields'] as $field) {
+				$field_string .= $field['dbname']."," ;
+			}
+			$field_string = substr($field_string,0,-1) ;
+
+			$field_array = $wpdb->get_results("SELECT $field_string FROM ".$this->table." WHERE id = ".$this->item,ARRAY_A) ;
+			$field_array = $field_array[0] ;
+		}
+		
+
 		?>
 		<div class="wrap">
 		<h1><?php echo $this->ojtitle ;?><a href="?page=<?php echo $_REQUEST['page'];?>&action=add" class="page-title-action">Add New</a></h1>
@@ -32,7 +51,7 @@ class OnlineJudge_AdminAddEdit {
 		<?php foreach($this->params['fields'] as $field) { ?>
 		<tr>
 		<th scope="row"><?php echo $field['name'] ; ?></th>
-		<td><?php echo $this->getInputSnippet($field) ; ?></td>
+		<td><?php echo $this->getInputSnippet($field,($this->action=='edit'?$field_array[$field['dbname']]:'')) ; ?></td>
 		</tr>
 		<?php } ?>
 
@@ -47,10 +66,15 @@ class OnlineJudge_AdminAddEdit {
 		<?php
 	}
 
-	private function getInputSnippet($field) {
+	private function getInputSnippet($field,$value) {
 		switch($field['type']) {
 			case 'input':
-				return '<input name="' . $field['name'] . '"/>' ;
+				return '<input name="' . $field['dbname'] . '"'.($this->action=='edit'?' value="'.$value.'"':'').' />' ;
+			case 'auto':
+				if($this->action=='edit') {
+					return $value ;
+				}
+				return 'This field is filled automatically' ;
 			default:
 				return 'Not implemented' ;
 		}
