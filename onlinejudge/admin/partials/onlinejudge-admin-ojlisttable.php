@@ -9,10 +9,11 @@ class OnlineJudge_List_Table extends WP_List_Table {
 	private $ojcolumns ;
 	private $ojfields ;
 	private $ojtable ;
+	private $ojconditions ;
 	private $ojitem ;
 	private $ojorder ;
 
-	public function __construct($columns,$fields,$table,$item,$order) {
+	public function __construct($columns,$fields,$table,$conditions,$item,$order) {
 
 		parent::__construct() ;
 
@@ -21,6 +22,7 @@ class OnlineJudge_List_Table extends WP_List_Table {
 		$this->ojcolumns = $columns ;
 		$this->ojfields = $fields ;
 		$this->ojtable = $wpdb->prefix.$table ;
+		$this->ojconditions = $conditions ;
 		$this->ojitem = $item ;
 		$this->ojorder = $order ;
 	}
@@ -37,7 +39,9 @@ class OnlineJudge_List_Table extends WP_List_Table {
 		$hidden = array() ;
 		$sortable = array() ;
 		$this->_column_headers = array($columns,$hidden,$sortable) ;
-		$this->items = $wpdb->get_results("SELECT " . $this->ojfields . " FROM " . $this->ojtable . ($this->ojorder != '' ? " ORDER BY ".$this->ojorder : ''),ARRAY_A) ;
+		$this->items = $wpdb->get_results("SELECT " . $this->ojfields . " FROM " . $this->ojtable .
+		($this->ojconditions != '' ? " WHERE ".$this->ojconditions : '').
+		($this->ojorder != '' ? " ORDER BY ".$this->ojorder : ''),ARRAY_A) ;
 
 	}
 
@@ -69,6 +73,7 @@ class OnlineJudge_AdminPage {
 	public function __construct($params) {
 		$this->ojtitle = $params['title_plural'] ;
 		$this->ojtable = $params['table'] ;
+		$this->ojconditions = $params['conditions'] ;
 		$this->ojitem = 'item' ;
 		$this->ojorder = $params['listorder'] ;
 		$this->ojcolumns = array() ;
@@ -84,7 +89,7 @@ class OnlineJudge_AdminPage {
 	}
 
 	public function getAdminPage() {
-		$list = new OnlineJudge_List_Table($this->ojcolumns,$this->ojfields,$this->ojtable,$this->ojitem,$this->ojorder) ;
+		$list = new OnlineJudge_List_Table($this->ojcolumns,$this->ojfields,$this->ojtable,$this->ojconditions,$this->ojitem,$this->ojorder) ;
 		$list->prepare_items();
 		?>
 		<div class="wrap">

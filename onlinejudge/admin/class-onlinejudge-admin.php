@@ -123,6 +123,7 @@ class OnlineJudge_Admin {
 		$params['title_single'] = 'OnlineJudge Language' ;
 		$params['title_plural'] = 'OnlineJudge Languages' ;
 		$params['table'] = 'oj_languages' ;
+		$params['conditions'] = '' ;
 		$params['listorder'] = 'id ASC' ;
 		$params['fields'] = $fields ;
 
@@ -143,6 +144,7 @@ class OnlineJudge_Admin {
 		$params['title_single'] = 'OnlineJudge Category' ;
 		$params['title_plural'] = 'OnlineJudge Categories' ;
 		$params['table'] = 'oj_categories' ;
+		$params['conditions'] = 'id>0' ;
 		$params['listorder'] = 'id ASC' ;
 		$params['fields'] = $fields ;
 
@@ -157,6 +159,7 @@ class OnlineJudge_Admin {
 
 		array_push($fields,array('dbname'=>'id','name'=>'ID','type'=>'input','editable'=>true,'showlist'=>true)) ;
 		array_push($fields,array('dbname'=>'title','name'=>'Title','type'=>'input','editable'=>true,'showlist'=>true)) ;
+		array_push($fields,array('dbname'=>'uri','name'=>'Description','type'=>'input','editable'=>true,'showlist'=>false)) ;
 		array_push($fields,array('dbname'=>'problemtype','name'=>'Type','type'=>'problemtype','editable'=>true,'showlist'=>false)) ;
 		array_push($fields,array('dbname'=>'timelimit','name'=>'Time Limit (ms)','type'=>'input','editable'=>true,'showlist'=>true)) ;
 		array_push($fields,array('dbname'=>'memorylimit','name'=>'Mem Limit (kb)','type'=>'input','editable'=>true,'showlist'=>true)) ;
@@ -166,6 +169,7 @@ class OnlineJudge_Admin {
 		$params['title_single'] = 'OnlineJudge Problem' ;
 		$params['title_plural'] = 'OnlineJudge Problems' ;
 		$params['table'] = 'oj_problems' ;
+		$params['conditions'] = '' ;
 		$params['listorder'] = 'id ASC' ;
 		$params['fields'] = $fields ;
 	
@@ -192,6 +196,7 @@ class OnlineJudge_Admin {
 		$params['title_single'] = 'OnlineJudge Problem Type' ;
 		$params['title_plural'] = 'OnlineJudge Problem Types' ;
 		$params['table'] = 'oj_problemtypes' ;
+		$params['conditions'] = '' ;
 		$params['listorder'] = 'id ASC' ;
 		$params['fields'] = $fields ;
 
@@ -210,6 +215,7 @@ class OnlineJudge_Admin {
 		$params['title_single'] = 'OnlineJudge Verdict' ;
 		$params['title_plural'] = 'OnlineJudge Verdicts' ;
 		$params['table'] = 'oj_verdicts' ;
+		$params['conditions'] = '' ;
 		$params['listorder'] = 'id ASC' ;
 		$params['fields'] = $fields ;
 

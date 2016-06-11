@@ -86,6 +86,10 @@ class OnlineJudge_AdminAddEdit {
 				return '<input name="' . $field['dbname'] . '"'.($this->action=='edit'?' value="'.$value.'"':'').' />' ;
 			case 'datetime':
 				return '<input name="' . $field['dbname'] . '"'.($this->action=='edit'?' value="'.$value.'"':'').' class="datefield" />' ;
+			case 'problemtype':
+				return 'Problem Type';
+			case 'categories':
+				return 'Categories';
 			case 'auto':
 				if($this->action=='edit') {
 					return $value ;
