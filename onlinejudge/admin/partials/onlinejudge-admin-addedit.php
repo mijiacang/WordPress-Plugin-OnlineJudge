@@ -20,6 +20,22 @@ class OnlineJudge_AdminAddEdit {
 		$this->table = $wpdb->prefix.$params['table'] ;
 		$this->action = $params['action'] ;
 		$this->item = $params['item'] ;
+
+		wp_enqueue_script('jquery-ui-datepicker');
+		wp_enqueue_style('jquery-ui-css','https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css') ;
+		add_action('admin_print_footer_scripts',array(&$this,'add_datepicker'));
+	}
+
+	public function add_datepicker() {
+	?>
+		<script type="text/javascript">
+		jQuery(document).ready(function() {
+			jQuery('#date').datepicker({
+				dateFormat : 'dd-mm-yy'
+			});
+		});
+		</script>
+	<?php
 	}
 
 	public function getAddEdit() {
@@ -38,7 +54,6 @@ class OnlineJudge_AdminAddEdit {
 			$field_array = $wpdb->get_results("SELECT $field_string FROM ".$this->table." WHERE id = ".$this->item,ARRAY_A) ;
 			$field_array = $field_array[0] ;
 		}
-		
 
 		?>
 		<div class="wrap">
@@ -70,6 +85,8 @@ class OnlineJudge_AdminAddEdit {
 		switch($field['type']) {
 			case 'input':
 				return '<input name="' . $field['dbname'] . '"'.($this->action=='edit'?' value="'.$value.'"':'').' />' ;
+			case 'datetime':
+				return '<input name="' . $field['dbname'] . '" id="date" />' ;
 			case 'auto':
 				if($this->action=='edit') {
 					return $value ;
