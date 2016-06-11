@@ -81,6 +81,9 @@ class OnlineJudge_AdminAddEdit {
 	}
 
 	private function getInputSnippet($field,$value) {
+
+		global $wpdb ;
+
 		switch($field['type']) {
 			case 'input':
 				return '<input name="' . $field['dbname'] . '"'.($this->action=='edit'?' value="'.$value.'"':'').' />' ;
@@ -89,7 +92,15 @@ class OnlineJudge_AdminAddEdit {
 			case 'problemtype':
 				return 'Problem Type';
 			case 'categories':
-				return 'Categories';
+				$cat_array = array() ;
+				$cat_array = $wpdb->get_results("SELECT id,name FROM ".$wpdb->prefix."oj_categories ORDER BY id ASC",ARRAY_A) ;
+
+				$returnstr = '<select name="parent">' ;
+				foreach($cat_array as $cat) {
+					$returnstr .= '<option value="'.$cat['id'].'"'.($value==$cat['id']?' selected':'').'>'.$cat['name'].'</option>' ;
+				}
+				$returnstr .= '</select>' ;
+				return $returnstr;
 			case 'auto':
 				if($this->action=='edit') {
 					return $value ;
