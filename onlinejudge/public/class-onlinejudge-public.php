@@ -133,11 +133,53 @@ class OnlineJudge_Public {
 		) ;
 	}
 
+	private function register_contests_post() {
+
+		array_push($this->post_types,'contests') ;
+
+		register_post_type('contests',
+			array(
+				'labels' => array(
+					'name' => 'Contests',
+					'singular_name' => 'Contest'
+				),
+				'public' => true,
+				'has_archive' => true,
+				'show_ui' => false,
+				'exclude_from_search' => true,
+				'hierarchical' => false,
+			)
+		) ;
+	}
+
+	private function register_submissions_post() {
+
+		array_push($this->post_types,'submissions') ;
+
+		register_post_type('submissions',
+			array(
+				'labels' => array(
+					'name' => 'Submissions',
+					'singular_name' => 'Submission'
+				),
+				'public' => true,
+				'has_archive' => true,
+				'show_ui' => false,
+				'exclude_from_search' => true,
+				'hierarchical' => false,
+			)
+		) ;
+	}
+
 	public function custom_post_template_archive($archive_template) {
 		if(is_post_type_archive('api')) {
 			$archive_template = dirname(__FILE__) . '/templates/archive-api.php' ;
 		} elseif(is_post_type_archive('problems')) {
 			$archive_template = dirname(__FILE__) . '/templates/archive-problems.php' ;
+		} elseif(is_post_type_archive('contests')) {
+			$archive_template = dirname(__FILE__) . '/templates/archive-contests.php' ;
+		} elseif(is_post_type_archive('submissions')) {
+			$archive_template = dirname(__FILE__) . '/templates/archive-submissions.php' ;
 		}
 		return $archive_template ;
 	}
@@ -160,6 +202,12 @@ class OnlineJudge_Public {
 				case 'problem':
 					$template = dirname(__FILE__) . '/templates/single-problem.php' ;
 					break ;
+				case 'contests':
+					$template = dirname(__FILE__) . '/templates/archive-contests.php' ;
+					break ;
+				case 'submissions':
+					$template = dirname(__FILE__) . '/templates/archive-submissions.php' ;
+					break ;
 			}
 		}
 
@@ -170,6 +218,8 @@ class OnlineJudge_Public {
 		$this->register_api_post() ;
 		$this->register_problems_post() ;
 		$this->register_problem_post() ;
+		$this->register_contests_post() ;
+		$this->register_submissions_post() ;
 	}
 
 }
