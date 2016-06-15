@@ -152,6 +152,25 @@ class OnlineJudge_Public {
 		) ;
 	}
 
+	private function register_submit_post() {
+
+		array_push($this->post_types,'submit') ;
+
+		register_post_style('submit',
+			array(
+				'labels' => array(
+					'name' => 'Quick Submit',
+					'singular_name' => 'Submit'
+				),
+				'public' => true,
+				'has_archive' => true,
+				'show_ui' => false,
+				'exclude_from_search' => true,
+				'hierarchical' => true,
+			)
+		) ;
+	}
+
 	public function custom_post_template_archive($archive_template) {
 		if(is_post_type_archive('api')) {
 			$archive_template = dirname(__FILE__) . '/templates/archive-api.php' ;
@@ -161,6 +180,8 @@ class OnlineJudge_Public {
 			$archive_template = dirname(__FILE__) . '/templates/archive-contests.php' ;
 		} elseif(is_post_type_archive('submissions')) {
 			$archive_template = dirname(__FILE__) . '/templates/archive-submissions.php' ;
+		} elseif(is_post_type_archive('submit')) {
+			$archive_template = dirname(__FILE__) . '/templates/archive-submit.php' ;
 		}
 		return $archive_template ;
 	}
@@ -186,6 +207,9 @@ class OnlineJudge_Public {
 				case 'submissions':
 					$template = dirname(__FILE__) . '/templates/single-submissions.php' ;
 					break ;
+				case 'submit':
+					$template = dirname(__FILE__) . '/templates/single-submit.php' ;
+					break ;
 			}
 		}
 
@@ -195,9 +219,9 @@ class OnlineJudge_Public {
 	public function register_post_types() {
 		$this->register_api_post() ;
 		$this->register_problems_post() ;
-		$this->register_problem_post() ;
 		$this->register_contests_post() ;
 		$this->register_submissions_post() ;
+		$this->register_submit_post() ;
 	}
 
 }
