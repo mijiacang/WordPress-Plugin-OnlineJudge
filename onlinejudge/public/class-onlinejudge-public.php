@@ -114,25 +114,6 @@ class OnlineJudge_Public {
 		) ;
 	}
 
-	private function register_problem_post() {
-
-		array_push($this->post_types,'problem') ;
-
-		register_post_type('problem',
-			array(
-				'labels' => array(
-					'name' => 'Problems',
-					'singular_name' => 'Problem'
-				),
-				'public' => true,
-				'has_archive' => false,
-				'show_ui' => false,
-				'exclude_from_search' => true,
-				'hierarchical' => false,
-			)
-		) ;
-	}
-
 	private function register_contests_post() {
 
 		array_push($this->post_types,'contests') ;
@@ -147,7 +128,7 @@ class OnlineJudge_Public {
 				'has_archive' => true,
 				'show_ui' => false,
 				'exclude_from_search' => true,
-				'hierarchical' => false,
+				'hierarchical' => true,
 			)
 		) ;
 	}
@@ -166,7 +147,7 @@ class OnlineJudge_Public {
 				'has_archive' => true,
 				'show_ui' => false,
 				'exclude_from_search' => true,
-				'hierarchical' => false,
+				'hierarchical' => true,
 			)
 		) ;
 	}
@@ -194,19 +175,16 @@ class OnlineJudge_Public {
 			$wp_query->is_404 = false ;
 			switch(get_query_var('post_type')) {
 				case 'api':
-					$template = dirname(__FILE__) . '/templates/archive-api.php' ;
+					$template = dirname(__FILE__) . '/templates/single-api.php' ;
 					break ;
 				case 'problems':
-					$template = dirname(__FILE__) . '/templates/archive-problems.php' ;
-					break ;
-				case 'problem':
-					$template = dirname(__FILE__) . '/templates/single-problem.php' ;
+					$template = dirname(__FILE__) . '/templates/single-problems.php' ;
 					break ;
 				case 'contests':
-					$template = dirname(__FILE__) . '/templates/archive-contests.php' ;
+					$template = dirname(__FILE__) . '/templates/single-contests.php' ;
 					break ;
 				case 'submissions':
-					$template = dirname(__FILE__) . '/templates/archive-submissions.php' ;
+					$template = dirname(__FILE__) . '/templates/single-submissions.php' ;
 					break ;
 			}
 		}
