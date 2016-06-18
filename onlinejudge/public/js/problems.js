@@ -2,7 +2,7 @@ jQuery(document).ready(function($) {
     $("#oj_categories ul li").addClass("expand").find("ul").hide();
     $("#oj_categories ul").on("click", "li a", function() {
         window.history.pushState("state", "Title", $(this).data("permalink"));
-        $.getJSON("/api/category/" + $(this).parent("li").val(), function(data) {
+        $.getJSON("/api/problems/" + $(this).parent("li").val(), function(data) {
             if (data.length == 0) {
                 $("#oj_problems").html("No problems in this category.");
             } else {

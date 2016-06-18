@@ -90,7 +90,7 @@ class OnlineJudge_Public {
 				'has_archive' => true,
 				'show_ui' => false,
 				'exclude_from_search' => true,
-				'hierarchical' => true,
+				'hierarchical' => false,
 			)
 		) ;
 	}
@@ -110,6 +110,25 @@ class OnlineJudge_Public {
 				'show_ui' => false,
 				'exclude_from_search' => true,
 				'hierarchical' => true,
+			)
+		) ;
+	}
+
+	private function register_problem_post() {
+	
+		array_push($this->post_types,'problem') ;
+
+		register_post_type('problem',
+			array(
+				'labels' => array(
+					'name' => 'Problems',
+					'singular_name' => 'Problem',
+				),
+				'public' => true,
+				'has_archive' => false,
+				'show_ui' => false,
+				'exclude_from_search' => true,
+				'hierarchical' => false,
 			)
 		) ;
 	}
@@ -156,7 +175,7 @@ class OnlineJudge_Public {
 
 		array_push($this->post_types,'submit') ;
 
-		register_post_style('submit',
+		register_post_type('submit',
 			array(
 				'labels' => array(
 					'name' => 'Quick Submit',
@@ -196,10 +215,13 @@ class OnlineJudge_Public {
 			$wp_query->is_404 = false ;
 			switch(get_query_var('post_type')) {
 				case 'api':
-					$template = dirname(__FILE__) . '/templates/single-api.php' ;
+					$template = dirname(__FILE__) . '/templates/archive-api.php' ;
 					break ;
 				case 'problems':
 					$template = dirname(__FILE__) . '/templates/single-problems.php' ;
+					break ;
+				case 'problem':
+					$template = dirname(__FILE__) . '/templates/single-problem.php' ;
 					break ;
 				case 'contests':
 					$template = dirname(__FILE__) . '/templates/single-contests.php' ;
@@ -219,6 +241,7 @@ class OnlineJudge_Public {
 	public function register_post_types() {
 		$this->register_api_post() ;
 		$this->register_problems_post() ;
+		$this->register_problem_post() ;
 		$this->register_contests_post() ;
 		$this->register_submissions_post() ;
 		$this->register_submit_post() ;
