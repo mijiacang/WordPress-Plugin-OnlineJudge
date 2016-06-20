@@ -17,6 +17,9 @@ switch($api_query[0]) {
 	case 'submissions':
 		require(dirname(__FILE__).'/../partials/api-submissions.php') ;
 		break ;
+	case 'draft':
+		require(dirname(__FILE__).'/../partials/api-draft.php') ;
+		break ;
 	default:
 		require(dirname(__FILE__).'/../partials/api-front.php') ;
 		break ;

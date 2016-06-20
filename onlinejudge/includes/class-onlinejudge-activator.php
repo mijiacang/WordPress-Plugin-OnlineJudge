@@ -34,7 +34,7 @@ class OnlineJudge_Activator {
 		global $wpdb;
 		$charset_collate = $wpdb->get_charset_collate();
 
-		$db_version = 34 ;  				// INCREASE EVERYTIME A DB CHANGE STRUCTURE HAPPENS
+		$db_version = 36 ;  				// INCREASE EVERYTIME A DB CHANGE STRUCTURE HAPPENS
 
 		$installed_version = get_option('onlinejudge_db_version') ;
 
@@ -104,7 +104,7 @@ class OnlineJudge_Activator {
 		$sql = 	"CREATE TABLE $table_name (
 				id MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT,
 				name TINYTEXT NOT NULL,
-				UNIQUE KEY (id)
+				PRIMARY KEY (id)
 				) $charset_collate;";
 
 		dbDelta ( $sql ) ;
@@ -139,7 +139,8 @@ class OnlineJudge_Activator {
 				category MEDIUMINT UNSIGNED NOT NULL,
 				problem MEDIUMINT UNSIGNED NOT NULL,
 				listorder SMALLINT UNSIGNED NOT NULL,
-				PRIMARY KEY (category,problem,listorder),
+				PRIMARY KEY (category,problem),
+				UNIQUE KEY listorder (category,problem,listorder),
 				FOREIGN KEY (category) REFERENCES $categories(id) ON DELETE NO ACTION ON UPDATE NO ACTION,
 				FOREIGN KEY (problem) REFERENCES $problems(id) ON DELETE NO ACTION ON UPDATE NO ACTION
 				) $charset_collate;";
@@ -160,7 +161,7 @@ class OnlineJudge_Activator {
 				code TEXT,
 				created DATETIME NOT NULL,
 				modified DATETIME NOT NULL,
-				PRIMARY KEY (user,problem,language),
+				PRIMARY KEY (user,problem),
 				FOREIGN KEY (problem) REFERENCES $problems(id) ON DELETE NO ACTION ON UPDATE NO ACTION,
 				FOREIGN KEY (user) REFERENCES $users(id) ON DELETE NO ACTION ON UPDATE NO ACTION,
 				FOREIGN KEY (language) REFERENCES $languages(id) ON DELETE NO ACTION ON UPDATE NO ACTION
