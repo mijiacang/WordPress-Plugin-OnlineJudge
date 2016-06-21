@@ -7,7 +7,7 @@
 <div id="oj_categories">
 <?php
 
-function print_cat($parent) {
+/* function print_cat($parent) {
 	global $wpdb ;
 
 	echo '<ul>' ;
@@ -24,7 +24,7 @@ function print_cat($parent) {
 	echo '</ul>' ;
 }
 
-print_cat(0) ;
+print_cat(0) ; */
 ?>
 </div>
 <div id="oj_problems">
