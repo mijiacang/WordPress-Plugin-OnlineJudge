@@ -190,6 +190,25 @@ class OnlineJudge_Public {
 		) ;
 	}
 
+	private function register_code_post() {
+
+		array_push($this->post_types,'code') ;
+
+		register_post_type('code',
+			array(
+				'labels' => array(
+					'name' => 'Code',
+					'singular_name' => 'Code'
+				),
+				'public' => true,
+				'has_archive' => false,
+				'show_ui' => false,
+				'exclude_from_search' => true,
+				'hierarchical' => false,
+			)
+		) ;
+	}
+
 	public function custom_post_template_archive($archive_template) {
 		if(is_post_type_archive('api')) {
 			$archive_template = dirname(__FILE__) . '/templates/archive-api.php' ;
@@ -232,6 +251,9 @@ class OnlineJudge_Public {
 				case 'submit':
 					$template = dirname(__FILE__) . '/templates/single-submit.php' ;
 					break ;
+				case 'code':
+					$template = dirname(__FILE__) . '/templates/single-code.php' ;
+					break ;
 			}
 		}
 
@@ -245,6 +267,7 @@ class OnlineJudge_Public {
 		$this->register_contests_post() ;
 		$this->register_submissions_post() ;
 		$this->register_submit_post() ;
+		$this->register_code_post() ;
 	}
 
 }
