@@ -1,5 +1,19 @@
 jQuery(document).ready(function($) {
     "use strict";
+
+	$.getJSON("/api/problem/"+$problem_id,function(data) {
+		if(data.length==0) {
+			// PROBLEM DOESN'T EXIST
+		} else {
+			$.each(data,function(key,value) {
+				$("#oj_problem_title").html(value.title) ;
+				$("#oj_problem_problemtype").html(value.problemtype) ;
+				$("#oj_problem_timelimit").html(value.timelimit) ;
+			}) ;
+		}
+	}) ;
+
+/*
     PDFJS.getDocument($pdfsrc).then(function(pdf) {
         pdf.getPage(1).then(function(page) {
             var scale = 1.5;
@@ -34,7 +48,8 @@ jQuery(document).ready(function($) {
     	        };
 
         	    page.render(renderContext);
-			});*/
+			});////////
+
 			var renderContext = {
 				canvasContext: context,
 				viewport: viewport
@@ -43,28 +58,32 @@ jQuery(document).ready(function($) {
         });
     });
 
+*/
 
+    var ctx = $("#langChart");
+    var data = {
+	datasets: [{
+	    data: [
+		300,
+		50,
+		100
+	    ],
+	    backgroundColor: [
+		"#F7464A",
+		"#46BFBD",
+		"#FDB45C"
+	    ],
+	    label: 'Problem stats'
+	}],
+	labels: [
+	    "Red",
+	    "Green",
+	    "Yellow"
+	]
+    };
 
-    var ctx = $("#langChart").get(0).getContext("2d");
-    var data = [ {
-        value: 300,
-        color: "#F7464A",
-        highlight: "#FF5A5E",
-        label: "Red"
-    }, {
-        value: 50,
-        color: "#46BFBD",
-        highlight: "#5AD3D1",
-        label: "Green"
-    }, {
-        value: 100,
-        color: "#FDB45C",
-        highlight: "#FFC870",
-        label: "Yellow"
-    } ];
-	var myDoughnutChart = new Chart(ctx).Doughnut(data) ;
-//    var myDoughnutChart = new Chart(ctx).Doughnut(data, {
-//        animationEasing: null
-//    });
-    document.getElementById("langLegend").innerHTML = myDoughnutChart.generateLegend();
+	var myDoughnutChart = new Chart(ctx,{
+		type: 'doughnut',
+		data: data
+	});
 });
