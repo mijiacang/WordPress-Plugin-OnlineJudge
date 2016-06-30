@@ -69,7 +69,7 @@ class OnlineJudge_Admin {
 	public function enqueue_styles() {
 
 		wp_enqueue_style( $this->onlinejudge, plugin_dir_url( __FILE__ ) . 'css/onlinejudge-admin.css', array(), $this->version, 'all' );
-		wp_enqueue_style( $this->onlinejudge, plugin_dir_url( __FILE__ ) . 'css/chosen/chosen.min.css', array(), $this->version, 'all' );
+		wp_enqueue_style( 'chosen', plugin_dir_url( __FILE__ ) . 'css/chosen/chosen.min.css');
                 wp_enqueue_style('jquery-ui','https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css') ;
 		//wp_enqueue_style( 'jquery-ui-timepicker', plugin_dir_url( __FILE__ ) . 'css/jquery-ui-timepicker-addon.css', array(), $this->version, 'all') ;
 
@@ -83,7 +83,7 @@ class OnlineJudge_Admin {
 	public function enqueue_scripts() {
 
 		wp_enqueue_script( $this->onlinejudge, plugin_dir_url( __FILE__ ) . 'js/onlinejudge-admin.js', array( 'jquery' ), $this->version, false );
-		wp_enqueue_script( $this->onlinejudge, plugin_dir_url( __FILE__ ) . 'js/chosen/chosen.jquery.min.js', array( 'jquery' ), $this->version, false ) ;
+		wp_enqueue_script( 'chosen', plugin_dir_url( __FILE__ ) . 'js/chosen/chosen.jquery.min.js') ;
 		wp_enqueue_script('jquery-ui-datepicker');
                 //wp_enqueue_script('jquery-ui-slider') ;
 		//wp_enqueue_script( 'jquery-ui-timepicker', plugin_dir_url( __FILE__ ) . 'js/jquery-ui-timepicker-addon.js', array( 'jquery' ), $this->version, false) ;
