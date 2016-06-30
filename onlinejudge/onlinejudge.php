@@ -16,7 +16,7 @@
  * Plugin Name:       OnlineJudge
  * Plugin URI:        https://github.com/UVaOJ/WordPress-Plugin-OnlineJudge
  * Description:       Creation of Online Judge social platforms for WordPress, BuddyPress and bbPress.
- * Version:           0.0.1
+ * Version:           0.0.2
  * Author:            UVa Online Judge
  * Author URI:        https://uva.onlinejudge.org/
  * License:           GPL-3.0
