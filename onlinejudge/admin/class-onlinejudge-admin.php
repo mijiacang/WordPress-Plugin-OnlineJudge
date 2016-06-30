@@ -162,6 +162,7 @@ class OnlineJudge_Admin {
 		array_push($fields,array('dbname'=>'id','name'=>'ID','type'=>'input','editable'=>true,'showlist'=>true)) ;
 		array_push($fields,array('dbname'=>'title','name'=>'Title','type'=>'input','editable'=>true,'showlist'=>true)) ;
 		array_push($fields,array('dbname'=>'uri','name'=>'Description','type'=>'input','editable'=>true,'showlist'=>false)) ;
+		array_push($fields,array('dbname'=>null,'name'=>'Categories','type'=>'probcat','editable'=>true,'showlist'=>false)) ;
 		array_push($fields,array('dbname'=>'problemtype','name'=>'Type','type'=>'problemtype','editable'=>true,'showlist'=>false)) ;
 		array_push($fields,array('dbname'=>'timelimit','name'=>'Time Limit (ms)','type'=>'input','editable'=>true,'showlist'=>true)) ;
 		array_push($fields,array('dbname'=>'memorylimit','name'=>'Mem Limit (kb)','type'=>'input','editable'=>true,'showlist'=>true)) ;

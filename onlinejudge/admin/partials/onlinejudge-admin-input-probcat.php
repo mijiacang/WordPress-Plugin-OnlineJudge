@@ -1,5 +1,5 @@
 <?php
-class OnlineJudge_AdminInputCategories {
+class OnlineJudge_AdminInputProbcat {
 
 	private $tmp_cats ;
 
@@ -9,16 +9,16 @@ class OnlineJudge_AdminInputCategories {
 
 	}
 
-	public function getCategories() {
+	public function getProbcat() {
 
 		global $wpdb ;
 
 		$cat_array = array() ;
-		$cat_array = $wpdb->get_results("SELECT id,name,parent FROM ".$wpdb->prefix."oj_categories ORDER BY id ASC",ARRAY_A) ;
+		$cat_array = $wpdb->get_results("SELECT id,name,parent FROM ".$wpdb->prefix."oj_categories WHERE id!=0 ORDER BY id ASC",ARRAY_A) ;
 
 		$this->sortCats($cat_array) ;
 
-		$returnstr = '<select data-placeholder="Select a parent category..." class="chosen-select" name="parent">' ;
+		$returnstr = '<select data-placeholder="Select a category..." class="chosen-select" multiple name="probcat">' ;
 		foreach($this->tmp_cats as $cat) {
 			$returnstr .= '<option value="'.$cat['id'].'"'.($value==$cat['id']?' selected':'').' style="padding-left:'.($cat['level']*15).'px;">'.$cat['name'].'</option>' ;
 		}
@@ -27,7 +27,7 @@ class OnlineJudge_AdminInputCategories {
 		return $returnstr;
 	}
 
-	function sortCats($cats,$level=0,$parent=null) {
+	function sortCats($cats,$level=0,$parent=0) {
 		foreach($cats as $cat) {
 			if($cat['parent']==$parent) {
 				$cat['level'] = $level ;

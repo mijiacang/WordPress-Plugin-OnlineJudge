@@ -46,7 +46,9 @@ class OnlineJudge_AdminAddEdit {
 		if($this->action=='edit') {
 			$field_string = '' ;
 			foreach($this->params['fields'] as $field) {
-				$field_string .= $field['dbname']."," ;
+				if($field['dbname']!=null) {
+					$field_string .= $field['dbname']."," ;
+				}
 			}
 			$field_string = substr($field_string,0,-1) ;
 
@@ -97,6 +99,10 @@ class OnlineJudge_AdminAddEdit {
 				require_once('onlinejudge-admin-input-categories.php') ;
 				$cats = new OnlineJudge_AdminInputCategories() ;
 				return $cats->getCategories();
+			case 'probcat':
+				require_once('onlinejudge-admin-input-probcat.php') ;
+				$probcat = new OnlineJudge_AdminInputProbcat() ;
+				return $probcat->getProbcat();
 			case 'auto':
 				if($this->action=='edit') {
 					return $value ;

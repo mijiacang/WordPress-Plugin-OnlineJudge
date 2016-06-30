@@ -79,7 +79,7 @@ class OnlineJudge_AdminPage {
 		$this->ojcolumns = array() ;
 
 		foreach($params['fields'] as $field) {
-			if($field['showlist']) {
+			if($field['showlist'] && $field['dbname']!=null) {
 				$this->ojfields .= $field['dbname']."," ;
 				$this->ojcolumns[$field['dbname']] = $field['name'] ;
 			}
