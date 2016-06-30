@@ -90,25 +90,13 @@ class OnlineJudge_AdminAddEdit {
 			case 'datetime':
 				return '<input name="' . $field['dbname'] . '"'.($this->action=='edit'?' value="'.$value.'"':'').' class="datefield" />' ;
 			case 'problemtype':
-				$probtype_array = array() ;
-				$probtype_array = $wpdb->get_results("SELECT id,name FROM ".$wpdb->prefix."oj_problemtypes ORDER BY id ASC",ARRAY_A) ;
-
-				$returnstr = '<select name="problemtype">' ;
-				foreach($probtype_array as $problemtype) {
-					$returnstr .= '<option value="'.$problemtype['id'].'"'.($value==$problemtype['id']?' selected':'').'>'.$problemtype['name'].'</option>' ;
-				}
-				$returnstr .= '</select>' ;
-				return $returnstr;
+				require_once('onlinejudge-admin-input-problemtype.php') ;
+				$probtype = new OnlineJudge_AdminInputProblemtype() ;
+				return $probtype->getProblemtype();
 			case 'categories':
-				$cat_array = array() ;
-				$cat_array = $wpdb->get_results("SELECT id,name FROM ".$wpdb->prefix."oj_categories ORDER BY id ASC",ARRAY_A) ;
-
-				$returnstr = '<select name="parent">' ;
-				foreach($cat_array as $cat) {
-					$returnstr .= '<option value="'.$cat['id'].'"'.($value==$cat['id']?' selected':'').'>'.$cat['name'].'</option>' ;
-				}
-				$returnstr .= '</select>' ;
-				return $returnstr;
+				require_once('onlinejudge-admin-input-categories.php') ;
+				$cats = new OnlineJudge_AdminInputCategories() ;
+				return $cats->getCategories();
 			case 'auto':
 				if($this->action=='edit') {
 					return $value ;
