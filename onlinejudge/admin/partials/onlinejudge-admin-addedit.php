@@ -101,7 +101,7 @@ class OnlineJudge_AdminAddEdit {
 				return $cats->getCategories();
 			case 'probcat':
 				require_once('onlinejudge-admin-input-probcat.php') ;
-				$probcat = new OnlineJudge_AdminInputProbcat() ;
+				$probcat = new OnlineJudge_AdminInputProbcat($this->item) ;
 				return $probcat->getProbcat();
 			case 'auto':
 				if($this->action=='edit') {
