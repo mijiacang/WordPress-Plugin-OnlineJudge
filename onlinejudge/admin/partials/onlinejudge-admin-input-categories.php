@@ -18,11 +18,12 @@ class OnlineJudge_AdminInputCategories {
 
 		$this->sortCats($cat_array) ;
 
-		$returnstr = '<select name="parent">' ;
+		$returnstr = '<select data-placeholder="Select a parent category..." class="chosen-select" name="parent">' ;
 		foreach($this->tmp_cats as $cat) {
 			$returnstr .= '<option value="'.$cat['id'].'"'.($value==$cat['id']?' selected':'').' style="padding-left:'.($cat['level']*15).'px !important;">'.$cat['name'].'</option>' ;
 		}
 		$returnstr .= '</select>' ;
+		$returnstr .= '<script type="text/javascript">jQuery(".chosen-select").chosen()</script>' ;
 		return $returnstr;
 	}
 
