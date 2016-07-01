@@ -261,6 +261,7 @@ class OnlineJudge_Public {
 	}
 
 	public function register_post_types() {
+			add_filter('the_title',$this->set_new_title) ;
 		$this->register_api_post() ;
 		$this->register_problems_post() ;
 		$this->register_problem_post() ;
@@ -268,6 +269,11 @@ class OnlineJudge_Public {
 		$this->register_submissions_post() ;
 		$this->register_submit_post() ;
 		$this->register_code_post() ;
+	}
+
+	public function set_new_title($data) {
+		echo "Hola, hola" ;
+		return "Custom Title TEST" ;
 	}
 
 }
