@@ -1,3 +1,7 @@
+<?php
+add_filter('wpseo_title',function($title) use($problem_id){ return "Code Problem $problem_id - ".get_bloginfo('name'); }) ;
+?>
+
 <?php get_header(); ?>
 <header class="entry-header">
         <h1 class="entry-title">

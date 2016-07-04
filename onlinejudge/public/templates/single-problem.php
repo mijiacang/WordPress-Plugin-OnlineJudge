@@ -4,6 +4,8 @@ global $wp_query ;
 
 $problem_id = $wp_query->query_vars['problem'] ;
 
+add_filter('wpseo_title',function($title) use($problem_id){ return "Problem $problem_id - ".get_bloginfo('name'); }) ;
+
 ?>
 
 <?php get_header(); ?>

@@ -1,3 +1,7 @@
+<?php
+add_filter('wpseo_title',function($title){ return "Submissions - ".get_bloginfo('name'); }) ;
+?>
+
 <?php get_header(); ?>
 
 <header class="entry-header">
