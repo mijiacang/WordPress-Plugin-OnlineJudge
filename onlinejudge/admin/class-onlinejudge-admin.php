@@ -23,6 +23,7 @@
 
 require_once('partials/onlinejudge-admin-ojlisttable.php') ;
 require_once('partials/onlinejudge-admin-addedit.php') ;
+require_once('partials/onlinejudge-admin-dashboard.php') ;
 
 class OnlineJudge_Admin {
 
@@ -44,6 +45,8 @@ class OnlineJudge_Admin {
 	 * @var      string    $version    The current version of this plugin.
 	 */
 	private $version;
+
+	private $dashboard_slug ;
 
 	/**
 	 * Initialize the class and set its properties.
@@ -91,7 +94,7 @@ class OnlineJudge_Admin {
 	}
 
 	public function create_admin_menu() {
-		add_menu_page( 'OnlineJudge Dashboard' , 'OnlineJudge' , 'manage_options' , 'onlinejudge' , array($this,'onlinejudge_dashboard') ,'' ,4 ) ;
+		$this->dashboard_slug = add_menu_page( 'OnlineJudge Dashboard' , 'OnlineJudge' , 'manage_options' , 'onlinejudge' , array($this,'onlinejudge_dashboard') ,'' ,4 ) ;
 		add_submenu_page( 'onlinejudge', 'OnlineJudge Languages', 'Languages', 'manage_options', 'onlinejudge_languages', array($this,'onlinejudge_languages')) ;
 		add_submenu_page( 'onlinejudge', 'OnlineJudge Categories', 'Categories', 'manage_options', 'onlinejudge_categories', array($this,'onlinejudge_categories')) ;
 		add_submenu_page( 'onlinejudge', 'OnlineJudge Problems', 'Problems', 'manage_options', 'onlinejudge_problems', array($this,'onlinejudge_problems')) ;
@@ -104,13 +107,8 @@ class OnlineJudge_Admin {
 	}
 
 	public function onlinejudge_dashboard() {
-		?>
-		<div class="wrap">
-		<h1>OnlineJudge Dashboard</h1>
-		</div>
-		<?php
-		echo plugins_url("/",__FILE__);
-
+		$dashboard = new OnlineJudge_Dashboard($this->dashboard_slug) ;
+		$dashboard->getDashboard() ;
 	}
 
 	public function onlinejudge_languages() {
