@@ -44,13 +44,47 @@ class OnlineJudge_Dashboard {
 	<?php
 	}
 
-	public function dependenciesMB() {
+	public function dependenciesMB() { ?>
+		<div class="inside">
+		<div class="main">
+		Running plugins:
+		<table>
+		<tr><td>Buddypress</td><td>Yes</td></tr>
+		<tr><td>Yoast SEO</td><td>Yes</td></tr>
+		<tr><td>bbPress</td><td>Yes</td><tr>
+		</table>
+		</div>
+		<div class="sub">
+		Check plugin dependencies status, and lets plug a looooong sentence here
+		</div>
+		</div>
 
-		echo "Dependencies" ;
-	}
+	<?php }
+
+	public function statusMB() { ?>
+		<div class="inside">
+		<div class="main">
+		The system status goes here
+		</div>
+		<div class="sub">
+		</div>
+		</div>
+	<?php }
+
+	public function activityMB() { ?>
+		<div class="inside">
+		<div class="main">
+		Latest activity
+		</div>
+		<div class="sub">
+		</div>
+		</div>
+	<?php }
 
 	public function oj_add_metaboxes() {
 		add_meta_box('oj-mb-depend','Dependencies',array(&$this,'dependenciesMB'),$this->dashboard_slug,'normal') ;
+		add_meta_box('oj-mb-status','System Status',array(&$this,'statusMB'),$this->dashboard_slug,'normal') ;
+		add_meta_box('oj-mb-activity','Latest Activity',array(&$this,'activityMB'),$this->dashboard_slug,'side') ;
 	}
 }
 
