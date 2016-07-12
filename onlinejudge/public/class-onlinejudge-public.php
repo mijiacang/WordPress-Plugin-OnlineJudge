@@ -237,7 +237,7 @@ class OnlineJudge_Public {
 					$template = dirname(__FILE__) . '/templates/archive-api.php' ;
 					break ;
 				case 'problems':
-					$template = dirname(__FILE__) . '/templates/single-problems.php' ;
+					$template = dirname(__FILE__) . '/templates/archive-problems.php' ;
 					break ;
 				case 'problem':
 					$template = dirname(__FILE__) . '/templates/single-problem.php' ;

@@ -42,13 +42,11 @@ jQuery(document).ready(function($) {
         $("#oj_categories ul").on("click", "li.collapse li:not(.collapse)", function(e) {
             e.stopImmediatePropagation();
         });
-        var $currentcat = window.location.href.substring(window.location.href.lastIndexOf("/") + 1);
-        if ($currentcat != "*") {
-            if ($currentcat.substring($currentcat.length - 1, $currentcat.length) == "#") {
-                $currentcat = $currentcat.substring(0, $currentcat.length - 1);
-            }
-            $('#oj_categories a[data-name="' + $currentcat + '"]').click();
-        }
+
+        if($currentcat) {
+            $('#oj_categories a[data-permalink="' + $currentcat + '"]').click();
+        } 
+
     }
     $.getJSON("/api/categories/", gen_cat);
 });
