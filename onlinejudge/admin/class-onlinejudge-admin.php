@@ -61,7 +61,7 @@ class OnlineJudge_Admin {
 		$this->version = $version;
 
 		add_action('admin_menu', array($this,'create_admin_menu')) ;
-
+		add_action('admin_enqueue_scripts',function() {if(is_admin()) wp_enqueue_media();});
 	}
 
 	/**
@@ -154,12 +154,13 @@ class OnlineJudge_Admin {
 
 	public function onlinejudge_problems() {
 
+
 		$params = array() ;
 		$fields = array() ;
 
 		array_push($fields,array('dbname'=>'id','name'=>'ID','type'=>'input','editable'=>true,'showlist'=>true)) ;
 		array_push($fields,array('dbname'=>'title','name'=>'Title','type'=>'input','editable'=>true,'showlist'=>true)) ;
-		array_push($fields,array('dbname'=>'uri','name'=>'Description','type'=>'media','editable'=>false,'showlist'=>false)) ;
+		array_push($fields,array('dbname'=>'uri','name'=>'Description','type'=>'media','editable'=>true,'showlist'=>false)) ;
 		array_push($fields,array('dbname'=>null,'name'=>'Categories','type'=>'probcat','editable'=>true,'showlist'=>false)) ;
 		array_push($fields,array('dbname'=>'problemtype','name'=>'Type','type'=>'problemtype','editable'=>true,'showlist'=>false)) ;
 		array_push($fields,array('dbname'=>'timelimit','name'=>'Time Limit (ms)','type'=>'input','editable'=>true,'showlist'=>true)) ;

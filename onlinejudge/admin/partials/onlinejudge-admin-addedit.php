@@ -9,6 +9,8 @@ class OnlineJudge_AdminAddEdit {
 	private $item ;
 	private $params ;
 
+	private $tmpdbgstr ;
+
 	public function __construct($params) {
 
 		global $wpdb ;
@@ -166,7 +168,7 @@ class OnlineJudge_AdminAddEdit {
 			case 'media':
 				require_once('onlinejudge-admin-input-media.php') ;
 				$media = new OnlineJudge_AdminInputMedia() ;
-				return $media->getMedia() ;
+				return $media->getMedia($value) ;
 			default:
 				return 'Not implemented' ;
 		}
