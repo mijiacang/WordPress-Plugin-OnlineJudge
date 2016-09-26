@@ -163,6 +163,10 @@ class OnlineJudge_AdminAddEdit {
 					return $value.'<input type="hidden" name="id" value="'.$value.'"/>' ;
 				}
 				return 'This field is filled automatically' ;
+			case 'media':
+				require_once('onlinejudge-admin-input-media.php') ;
+				$media = new OnlineJudge_AdminInputMedia() ;
+				return $media->getMedia() ;
 			default:
 				return 'Not implemented' ;
 		}
