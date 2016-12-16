@@ -9,19 +9,28 @@ jQuery(document).ready(function($) {
 
 	$.getJSON("/api/draft/"+$ojid,function(data) {
 		$.each(data, function(key,val) {
-			if(key == 'code') {
-				$lastsavedcode = val ;
-				editor.setValue($('<div/>').html(val).text()) ;
-				editor.on("change",function() {
-					$("#code_wrapper #left_menu #draft .backtitle.saved").removeClass("saved").addClass("unsaved") ;
-				}) ;
-			} else if(key == 'modified') {
-				$("#code_wrapper #left_menu #draft .info span#last_saved").html(val) ;
+			if(key == 'problemdata') {
+				$.each(val,function(key,val) {
+					if(key=='id') $("#problemid").html(val) ;
+					if(key=='title') $("#problemtitle").html(val) ;
+				});
+			} else if(key == 'draft') {
+				$.each(val,function(key,val) {
+					if(key == 'code') {
+						$lastsavedcode = val ;
+						editor.setValue($('<div/>').html(val).text()) ;
+						editor.on("change",function() {
+							$("#code_wrapper #left_menu #draft .backtitle.saved").removeClass("saved").addClass("unsaved") ;
+						}) ;
+					} else if(key == 'modified') {
+						$("#code_wrapper #left_menu #draft .info span#last_saved").html(val) ;
+					}
+				});
 			}
 		});
 	});
 
-	$.getJSON("/api/submission/problem/"+$ojid+"/user/"+$userid,function(data) {
+/*	$.getJSON("/api/submission/problem/"+$ojid+"/user/"+$userid,function(data) {
 		$.each(data, function(key,val) {
 			var $id ;
 			var $created ;
@@ -35,9 +44,13 @@ jQuery(document).ready(function($) {
 			$("#code_wrapper #left_menu #submissions").append('<div id="'+$id+'" class="submission"><div class="info">'+$id+'<br/><span id="last_saved">'+$created+'</span><br/><span id="language">'+$verdict+'</span></div><div class="loadcode"><i class="fa fa-arrow-right fa-2x" title="Load this code in the editor"></i></div></div>') ;
 		});
 	});
+*/
 
 	$("#save_draft").on("click",function() {
-		$.post("/api/draft/"+$ojid,{code: $('<div/>').text(editor.getValue()).html()},function(data) {
+		var data = {
+			code: $('<div/>').text(editor.getValue()).html()
+		} ;
+		$.getJSON("/api/draft/"+$ojid,data,function(data) {
 			$.each(data, function(key,val) {
 				if(key == 'code') {
 					$lastsavedcode = val ;
@@ -46,7 +59,7 @@ jQuery(document).ready(function($) {
 				}
 			});
 			$("#code_wrapper #left_menu #draft .backtitle.unsaved").removeClass("unsaved").addClass("saved") ;
-		},'json');
+		});
 	});
 
 	$(".loadcode").on("click",function() {

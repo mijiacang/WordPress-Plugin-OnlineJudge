@@ -5,7 +5,7 @@ add_filter('wpseo_title',function($title) use($problem_id){ return "Code Problem
 <?php get_header(); ?>
 <header class="entry-header">
         <h1 class="entry-title">
-                {@problem.ojid} - {@problem.title}
+                <span id="problemid">0</span> - <span id="problemtitle">TITLE</span>
                 <a href="#lsRet" id="save_draft" class="button">Save draft</a>
                 <a href="/placeholder" class="button">Test code</a>
                 <a href="/placeholder" class="button">Submit</a>
@@ -13,8 +13,10 @@ add_filter('wpseo_title',function($title) use($problem_id){ return "Code Problem
 </header>
 
 <script type="text/javascript">
-        var $ojid = {@problem.ojid} ;
+var $ojid = <?php echo $wp_query->query_vars['code'] ; ?> ;
 </script>
+<script type="text/javascript" src="/wp-content/plugins/onlinejudge/public/js/ace/ace.js"></script>
+<script type="text/javascript" src="/wp-content/plugins/onlinejudge/public/js/code.js"></script>
 
 <div id="code_wrapper">
         <div id="left_menu">
