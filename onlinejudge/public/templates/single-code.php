@@ -5,7 +5,7 @@ add_filter('wpseo_title',function($title) use($problem_id){ return "Code Problem
 <?php get_header(); ?>
 <header class="entry-header">
         <h1 class="entry-title">
-                <span id="problemid">0</span> - <span id="problemtitle">TITLE</span>
+                <span id="problemid"></span> - <span id="problemtitle"></span>
                 <a href="#lsRet" id="save_draft" class="button">Save draft</a>
                 <a href="/placeholder" class="button">Test code</a>
                 <a href="/placeholder" class="button">Submit</a>

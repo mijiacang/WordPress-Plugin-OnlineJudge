@@ -9,12 +9,20 @@ file_put_contents('/tmp/headers.txt', getallheaders());
 
 $results = array() ;
 
-if(isset($_POST['code'])) {
-	$query_str = 'INSERT INTO '.$wpdb->prefix.'oj_codedrafts (user,problem,language,created,modified) '.
-			'VALUES ('.$user_ID.','.$problem.',1,NOW(),NOW()) ON DUPLICATE KEY UPDATE '.
-			'code = '.mysqli_real_escape_string($_POST['code']).', language = 1, modified = NOW()' ;
-	$results['query'] = $query_str ;
-	$wpdb->get_results($query_str) ;
+if(isset($_POST['draftcode'])) {
+	$wpdb->query($wpdb->prepare(
+		"
+			INSERT INTO ".$wpdb->prefix."oj_codedrafts
+			(user,problem,code,language,created,modified)
+			VALUES (%d,%d,%s,1,UTC_TIMESTAMP(),UTC_TIMESTAMP())
+			ON DUPLICATE KEY UPDATE
+			code = %s, language = 1, modified = UTC_TIMESTAMP()
+		",
+		$user_ID,
+		$problem,
+		$_POST['draftcode'],
+		$_POST['draftcode']
+	)) ;
 }
 
 $results['problemdata'] = $wpdb->get_results('SELECT id,title FROM '.$wpdb->prefix.

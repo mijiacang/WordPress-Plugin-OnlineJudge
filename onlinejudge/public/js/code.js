@@ -4,10 +4,11 @@ jQuery(document).ready(function($) {
 	editor.setTheme("ace/theme/chrome");
 	editor.setShowPrintMargin(false) ;
 	editor.getSession().setMode("ace/mode/c_cpp");
+	editor.on("change",function() {$("#code_wrapper #left_menu #draft .backtitle.saved").removeClass("saved").addClass("unsaved") ;});
 
 	var $lastsavedcode = '' ;
 
-	$.getJSON("/api/draft/"+$ojid,function(data) {
+	function jsoncallback(data) {
 		$.each(data, function(key,val) {
 			if(key == 'problemdata') {
 				$.each(val,function(key,val) {
@@ -19,16 +20,15 @@ jQuery(document).ready(function($) {
 					if(key == 'code') {
 						$lastsavedcode = val ;
 						editor.setValue($('<div/>').html(val).text()) ;
-						editor.on("change",function() {
-							$("#code_wrapper #left_menu #draft .backtitle.saved").removeClass("saved").addClass("unsaved") ;
-						}) ;
 					} else if(key == 'modified') {
 						$("#code_wrapper #left_menu #draft .info span#last_saved").html(val) ;
 					}
 				});
 			}
 		});
-	});
+	}
+
+	$.getJSON("/api/draft/"+$ojid,jsoncallback) ;
 
 /*	$.getJSON("/api/submission/problem/"+$ojid+"/user/"+$userid,function(data) {
 		$.each(data, function(key,val) {
@@ -48,18 +48,10 @@ jQuery(document).ready(function($) {
 
 	$("#save_draft").on("click",function() {
 		var data = {
-			code: $('<div/>').text(editor.getValue()).html()
+			draftcode: $('<div/>').text(editor.getValue()).html()
 		} ;
-		$.getJSON("/api/draft/"+$ojid,data,function(data) {
-			$.each(data, function(key,val) {
-				if(key == 'code') {
-					$lastsavedcode = val ;
-				} else if(key == 'modified') {
-					$("#code_wrapper #left_menu #draft .info span#last_saved").html(val) ;
-				}
-			});
-			$("#code_wrapper #left_menu #draft .backtitle.unsaved").removeClass("unsaved").addClass("saved") ;
-		});
+		$.post("/api/draft/"+$ojid,data,jsoncallback,'json') ;
+		$("#code_wrapper #left_menu #draft .backtitle.unsaved").removeClass("unsaved").addClass("saved") ;
 	});
 
 	$(".loadcode").on("click",function() {
