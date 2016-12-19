@@ -19,7 +19,8 @@ jQuery(document).ready(function($) {
 				$.each(val,function(key,val) {
 					if(key == 'code') {
 						$lastsavedcode = val ;
-						editor.setValue($('<div/>').html(val).text()) ;
+						editor.setValue($('<div/>').html(val).text(),-1) ;
+						$("#code_wrapper #left_menu #draft .backtitle.unsaved").removeClass("unsaved").addClass("saved") ;
 					} else if(key == 'modified') {
 						$("#code_wrapper #left_menu #draft .info span#last_saved").html(val) ;
 					}
@@ -51,11 +52,10 @@ jQuery(document).ready(function($) {
 			draftcode: $('<div/>').text(editor.getValue()).html()
 		} ;
 		$.post("/api/draft/"+$ojid,data,jsoncallback,'json') ;
-		$("#code_wrapper #left_menu #draft .backtitle.unsaved").removeClass("unsaved").addClass("saved") ;
 	});
 
 	$(".loadcode").on("click",function() {
-		editor.setValue($('<div/>').html($lastsavedcode).text()) ;
+		editor.setValue($('<div/>').html($lastsavedcode).text(),-1) ;
 		$("#code_wrapper #left_menu #draft .backtitle.unsaved").removeClass("unsaved").addClass("saved") ;
 	});
 });
