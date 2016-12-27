@@ -30,6 +30,6 @@ $results['problemdata'] = $wpdb->get_results('SELECT id,title FROM '.$wpdb->pref
 $results['draft'] = $wpdb->get_results('SELECT language,code,created,modified FROM '.$wpdb->prefix.
 				'oj_codedrafts WHERE user='.$user_ID.' AND problem='.$problem)[0] ;
 
-echo json_encode($results) ;
+echo json_encode($results,JSON_NUMERIC_CHECK) ;
 
 ?>

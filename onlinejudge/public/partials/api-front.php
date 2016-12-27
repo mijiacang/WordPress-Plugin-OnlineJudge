@@ -12,6 +12,7 @@ Retrieve _problem_id_ info<br/>
 Retrive problems in _category_id_<br/>
 <br/>
 <a href="/api/submissions/">/api/submissions</a><br/>
+<a href="/api/submissions/">/api/submissions/_first_id_/_problemid_/_userid_/_count_/</a><br/>
 Several submissions related stuff<br/>
 <br/>
 <a href="/api/draft/_problem_id_">/api/draft/_problem_id_</a><br/>

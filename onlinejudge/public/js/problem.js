@@ -5,11 +5,9 @@ jQuery(document).ready(function($) {
 		if(data.length==0) {
 			// PROBLEM DOESN'T EXIST
 		} else {
-			$.each(data,function(key,value) {
-				$("#oj_problem_title").html(value.title) ;
-				$("#oj_problem_problemtype").html(value.problemtype) ;
-				$("#oj_problem_timelimit").html(value.timelimit) ;
-			}) ;
+			$("#oj_problem_title").html(data.title) ;
+			$("#oj_problem_problemtype").html(data.problemtype) ;
+			$("#oj_problem_timelimit").html(data.timelimit) ;
 		}
 	}) ;
 

@@ -1,6 +1,7 @@
 <?php
 
 global $wpdb ;
+global $user_ID ;
 
 $conditions = array() ;
 $count = null ;
@@ -11,7 +12,8 @@ if(isset($wp_query->query_vars['problemid']) && $wp_query->query_vars['problemid
 	$conditions[] = " AND problem=".$wp_query->query_vars['problemid'] ;
 }
 
-if(isset($wp_query->query_vars['userid']) && $wp_query->query_vars['userid'] > 0) {
+if(isset($wp_query->query_vars['userid']) && $wp_query->query_vars['userid'] != 0) {
+	if($wp_query->query_vars['userid'] == "C") $wp_query->query_vars['userid'] = $user_ID ;
 	$conditions[] = " AND user=".$wp_query->query_vars['userid'] ;
 }
 

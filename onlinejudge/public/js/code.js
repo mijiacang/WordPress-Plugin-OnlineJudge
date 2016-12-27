@@ -9,43 +9,27 @@ jQuery(document).ready(function($) {
 	var $lastsavedcode = '' ;
 
 	function jsoncallback(data) {
+		$("#problemid").html(data.problemdata.id) ;
+		$("#problemtitle").html(data.problemdata.title) ;
+		$lastsavedcode = data.draft.code ;
+		editor.setValue($('<div/>').html($lastsavedcode).text(),-1) ;
+		$("#code_wrapper #left_menu #draft .backtitle.unsaved").removeClass("unsaved").addClass("saved") ;
+		$("#code_wrapper #left_menu #draft .info span#last_saved").html(data.draft.modified) ;
+	}
+
+	function loadsubmissions(data) {
+		$("#code_wrapper #left_menu #submissions").html() ;
 		$.each(data, function(key,val) {
-			if(key == 'problemdata') {
-				$.each(val,function(key,val) {
-					if(key=='id') $("#problemid").html(val) ;
-					if(key=='title') $("#problemtitle").html(val) ;
-				});
-			} else if(key == 'draft') {
-				$.each(val,function(key,val) {
-					if(key == 'code') {
-						$lastsavedcode = val ;
-						editor.setValue($('<div/>').html(val).text(),-1) ;
-						$("#code_wrapper #left_menu #draft .backtitle.unsaved").removeClass("unsaved").addClass("saved") ;
-					} else if(key == 'modified') {
-						$("#code_wrapper #left_menu #draft .info span#last_saved").html(val) ;
-					}
-				});
-			}
+			var $id = val.id ;
+			var $created = val.created ;
+			// var $verdict ;
+			var $language = val.language ;
+			$("#code_wrapper #left_menu #submissions").append('<div id="'+$id+'" class="submission"><div class="info">'+$id+'<br/><span id="last_saved">'+$created+'</span><br/><span id="language">'+$language+'</span></div><div class="loadcode"><i class="fa fa-arrow-right fa-2x" title="Load this code into the editor"></i></div></div>') ;
 		});
 	}
 
 	$.getJSON("/api/draft/"+$ojid,jsoncallback) ;
-
-/*	$.getJSON("/api/submission/problem/"+$ojid+"/user/"+$userid,function(data) {
-		$.each(data, function(key,val) {
-			var $id ;
-			var $created ;
-			var $verdict ;
-			var $language ;
-			$.each(val, function(key,val) {
-				if(key == 'id') { $id=val ; }
-				else if(key == 'created') { $created=val ; }
-				else if(key == 'verdict') { $verdict=val ; }
-			});
-			$("#code_wrapper #left_menu #submissions").append('<div id="'+$id+'" class="submission"><div class="info">'+$id+'<br/><span id="last_saved">'+$created+'</span><br/><span id="language">'+$verdict+'</span></div><div class="loadcode"><i class="fa fa-arrow-right fa-2x" title="Load this code in the editor"></i></div></div>') ;
-		});
-	});
-*/
+	$.getJSON("/api/submissions/0/"+$ojid+"/C/0/",loadsubmissions) ;
 
 	$("#save_draft").on("click",function() {
 		var data = {

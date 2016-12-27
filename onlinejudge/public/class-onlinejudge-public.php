@@ -94,7 +94,7 @@ class OnlineJudge_Public {
 			)
 		) ;
 
-		add_rewrite_rule("api/submissions/([0-9]{1,})/([0-9]{1,})/([0-9]{1,})/([0-9]{1,})/?",
+		add_rewrite_rule("api/submissions/([0-9]{1,})/([0-9]{1,})/([0-9C]{1,})/([0-9]{1,})/?",
 			'index.php?post_type=api&api=submissions&page=$matches[1]&problemid=$matches[2]&userid=$matches[3]&listlength=$matches[4]','top') ;
 
 		add_filter('query_vars',function($vars){
