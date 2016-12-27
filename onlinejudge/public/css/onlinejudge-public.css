@@ -3,6 +3,35 @@
  * included in this file.
  */
 
+table#submissions
+{
+  width: 100%;
+}
+
+table#submissions th, table#submissions td
+{
+  text-align: center;
+}
+
+table#submissions th {
+  font-weight: bold;
+  background-color: #c31756;
+  color: #fff;
+  padding: 10px;
+}
+
+table#submissions td {
+  padding: 5px;
+}
+
+table#submissions tr.color0 {
+  background-color: #eee;
+}
+
+table#submissions tr.color1 {
+  background-color: #ddd;
+}
+
 #code_wrapper
 {
   width: 100%;
