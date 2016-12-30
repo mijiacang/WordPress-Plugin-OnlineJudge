@@ -10,7 +10,8 @@ function fill_table(data) {
 }
 
 function call_json() {
-	$.getJSON('/api/submissions/0/0/0/0/',fill_table);
+	$.getJSON('/api/submissions/0/0/0/-50/',fill_table);
+	alert("Llamada") ;
 }
 
 setInterval(call_json(),1000) ;
