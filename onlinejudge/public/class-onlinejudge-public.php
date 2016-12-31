@@ -76,6 +76,8 @@ class OnlineJudge_Public {
 	 */
 	public function enqueue_scripts() {
 
+		wp_enqueue_script( 'oj_pouchdb', plugin_dir_url( __FILE__ ) . 'js/pouchdb-6.1.0.js', array(), '6.1.0', false );
+		wp_enqueue_script( 'oj_pouchdb_memory', plugin_dir_url( __FILE__ ) . 'js/pouchdb.memory.js', array( 'oj_pouchdb' ), '6.1.0', false );
 		wp_enqueue_script( $this->onlinejudge, plugin_dir_url( __FILE__ ) . 'js/onlinejudge-public.js', array( 'jquery' ), $this->version, false );
 
 	}
