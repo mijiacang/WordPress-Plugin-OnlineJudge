@@ -30,3 +30,27 @@
 	 */
 
 })( jQuery );
+
+function oj_language(id,retry=false) {
+	var db = new PouchDB('oj_languages',{adapter: 'memory'}) ;
+	db.get(id.toString(),function(err,doc){
+		if(err) {
+			if(err.status==404 && retry == false) {
+				$.getJSON('/api/languages/',function(data) {
+					$.each(data,function(key,value) {
+						db.put({
+							_id: value.id.toString(),
+							shortname: value.shortname
+						});
+					});
+				}).done(function() {
+					oj_language(id,true) ;
+				});
+			} else {
+				return console.log(err) ;
+			}
+		}
+			
+		return console.log(doc) ;
+	});
+}

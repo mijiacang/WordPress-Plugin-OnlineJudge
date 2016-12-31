@@ -16,6 +16,9 @@ Retrive problems in _category_id_<br/>
 Several submissions related stuff<br/>
 <br/>
 <a href="/api/draft/_problem_id_">/api/draft/_problem_id_</a><br/>
-Retrieve draft for problem _problem_id_ by logged in user
+Retrieve draft for problem _problem_id_ by logged in user<br/>
+<br/>
+<a href="/api/languages/">/api/languages/</a><br/>
+Get all languages<br/>
 </body>
 </html>
