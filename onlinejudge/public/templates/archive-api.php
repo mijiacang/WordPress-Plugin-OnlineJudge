@@ -20,6 +20,12 @@ switch($wp_query->query_vars['api']) {
 	case 'categories':
 		require(dirname(__FILE__).'/../partials/api-categories.php') ;
 		break ;
+	case 'languages':
+		require(dirname(__FILE__).'/../partials/api-languages.php') ;
+		break ;
+	case 'verdicts':
+		require(dirname(__FILE__).'/../partials/api-verdicts.php') ;
+		break ;
 	default:
 		require(dirname(__FILE__).'/../partials/api-front.php') ;
 		break ;
