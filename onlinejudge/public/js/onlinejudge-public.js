@@ -31,9 +31,10 @@
 
 })( jQuery );
 
-function oj_language(id,retry=false) {
+function oj_language(obj,retry=false) {
+	console.log("DATA: "+obj.data('language')) ;
 	var db = new PouchDB('oj_languages',{adapter: 'memory'}) ;
-	db.get(id.toString(),function(err,doc){
+	db.get(obj.data('language').toString(),function(err,doc){
 		if(err) {
 			if(err.status==404 && retry == false) {
 				$.getJSON('/api/languages/',function(data) {
@@ -44,13 +45,12 @@ function oj_language(id,retry=false) {
 						});
 					});
 				}).done(function() {
-					oj_language(id,true) ;
+					oj_language(obj,true) ;
 				});
 			} else {
 				return console.log(err) ;
 			}
 		}
-			
-		return console.log(doc) ;
+//		obj.html(doc.shortname) ;	
 	});
 }
